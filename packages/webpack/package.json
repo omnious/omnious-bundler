@@ -10,8 +10,6 @@
       "email": "ykd1217@gmail.com"
     }
   ],
-  "contributors": [],
-  "license": "MIT",
   "repository": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/webpack",
   "keywords": [
     "omnious",
@@ -23,8 +21,7 @@
   "main": "./bin/cli.js",
   "scripts": {
     "build": "echo 'There`s no @omnious/webpack build'",
-    "lint": "eslint .",
-    "start": "omnious-webpack watch"
+    "lint": "eslint ."
   },
   "dependencies": {
     "commander": "^2.15.1",
