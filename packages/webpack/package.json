@@ -33,7 +33,9 @@
     "css-loader": "^0.28.10",
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
+    "eslint-loader": "^2.1.0",
     "file-loader": "^1.1.9",
+    "fork-ts-checker-webpack-plugin": "^0.4.3",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
@@ -42,7 +44,6 @@
     "postcss-loader": "^2.1.1",
     "raw-loader": "^0.5.1",
     "react-dev-utils": "^6.0.0-next.3e165448",
-    "source-map-loader": "^0.2.3",
     "style-loader": "^0.20.2",
     "stylelint-webpack-plugin": "^0.10.5",
     "sw-precache-webpack-plugin": "^0.11.5",
@@ -56,11 +57,12 @@
     "@babel/core": "^7.0.0-beta.53",
     "angular2-template-loader": "^0.6.2",
     "babel-loader": "^8.0.0-beta.4",
-    "fork-ts-checker-webpack-plugin": "^0.4.3",
+    "eslint": "^5.2.0",
     "stylelint": "^9.3.0",
     "ts-loader": "^4.4.1",
     "tslint": "^5.10.0",
-    "typescript": "^2.9.2"
+    "typescript": "^2.9.2",
+    "vue-loader": "^15.2.6"
   },
   "bin": {
     "omnious-webpack": "./bin/cli.js"
