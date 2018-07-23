@@ -1,0 +1,143 @@
+0 silly input [ '../omnious-web-utils/packages/webpack' ]
+1 silly flags { _: [ 'import' ],
+1 silly flags   'reject-cycles': false,
+1 silly flags   rejectCycles: false,
+1 silly flags   pathToRepo: '../omnious-web-utils/packages/webpack' }
+2 verbose rootPath /Users/Omnious-Dev/Documents/Dev/module/omnious-bundler
+3 info version 2.9.1
+4 silly isInitialized
+5 silly isInitialized true
+6 silly existsSync /Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/VERSION
+7 info versioning independent
+8 silly initialize attempt
+9 silly statSync /Users/Omnious-Dev/Documents/Dev/module/omnious-web-utils/packages/webpack
+10 silly getWorkspaceRoot
+11 verbose getWorkspaceRoot /Users/Omnious-Dev/Documents/Dev/module/omnious-bundler
+12 silly existsSync /Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/packages/webpack
+13 silly getCurrentSHA
+14 verbose getCurrentSHA 2df2a3fbbcd8357c61c424b23c5b33a39c756c52
+15 info About to import 159 commits from ../omnious-web-utils/packages/webpack into packages/webpack
+16 silly initialize success
+17 silly execute attempt
+18 info 5c2cc9d
+19 info 8d0c499
+20 info d583e95
+21 info 73fdba9
+22 info 3ac747f
+23 info 5b5d321
+24 info 170b0f3
+25 info 922c8aa
+26 info 75b163a
+27 info c28a855
+28 info 3a4fad8
+29 info 658f967
+30 info 12421d0
+31 info 7104931
+32 info 69e57e0
+33 info 27a94ac
+34 info 71430f5
+35 info 24fa915
+36 info ffbba4e
+37 info a556604
+38 info a36e19b
+39 info b12c5db
+40 info b9371ac
+41 info 94829ea
+42 info be358d1
+43 info e009c90
+44 info 2240d53
+45 info 6db7773
+46 info 1eb4ae2
+47 info 3338dc3
+48 info a0bb6ac
+49 info 1f1a495
+50 info b58de45
+51 info f175cba
+52 info a5a4f7e
+53 info 75f9191
+54 info 99ab038
+55 info b7b8e4b
+56 info 7b48dad
+57 info 6f98117
+58 info b749b7c
+59 info a7c6f63
+60 info 3e0a76e
+61 info 05a1d93
+62 info 8d06dc6
+63 info d873519
+64 info f5f131b
+65 info 9452a35
+66 info 9a53d6e
+67 info 5df7b54
+68 info 9cb0e8b
+69 info 4dd004d
+70 info cdd9008
+71 info a3a5bcc
+72 info b37a229
+73 info 80a683d
+74 info 552254f
+75 info d188c41
+76 info 9c99a5c
+77 info f915a36
+78 info 5df75b1
+79 info 2f9bc91
+80 info 105a1c7
+81 info ef4fd66
+82 info 2c6cb06
+83 info 1cc08ac
+84 info 05b4065
+85 info 9ce9cff
+86 error import Error: Failed to apply commit 9ce9cff.
+86 error import Command failed: git am -3 --keep-non-patch
+86 error import fatal: Unable to create '/Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/.git/index.lock': File exists.
+86 error import
+86 error import Another git process seems to be running in this repository, e.g.
+86 error import an editor opened by 'git commit'. Please make sure all processes
+86 error import are terminated then try again. If it still fails, a git process
+86 error import may have crashed in this repository earlier:
+86 error import remove the file manually to continue.
+86 error import
+86 error import Rolling back to previous HEAD (commit 2df2a3fbbcd8357c61c424b23c5b33a39c756c52).
+86 error import You may try with --flatten to import flat history.
+86 error import     at Promise.all.then.arr (/Users/Omnious-Dev/.config/yarn/global/node_modules/execa/index.js:236:11)
+86 error import     at <anonymous>
+86 error import     at process._tickCallback (internal/process/next_tick.js:188:7)
+86 error import  { Error: Failed to apply commit 9ce9cff.
+86 error import Command failed: git am -3 --keep-non-patch
+86 error import fatal: Unable to create '/Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/.git/index.lock': File exists.
+86 error import
+86 error import Another git process seems to be running in this repository, e.g.
+86 error import an editor opened by 'git commit'. Please make sure all processes
+86 error import are terminated then try again. If it still fails, a git process
+86 error import may have crashed in this repository earlier:
+86 error import remove the file manually to continue.
+86 error import
+86 error import Rolling back to previous HEAD (commit 2df2a3fbbcd8357c61c424b23c5b33a39c756c52).
+86 error import You may try with --flatten to import flat history.
+86 error import     at Promise.all.then.arr (/Users/Omnious-Dev/.config/yarn/global/node_modules/execa/index.js:236:11)
+86 error import     at <anonymous>
+86 error import     at process._tickCallback (internal/process/next_tick.js:188:7)
+86 error import   stack: 'Error: Failed to apply commit 9ce9cff.\nCommand failed: git am -3 --keep-non-patch\nfatal: Unable to create \'/Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/.git/index.lock\': File exists.\n\nAnother git process seems to be running in this repository, e.g.\nan editor opened by \'git commit\'. Please make sure all processes\nare terminated then try again. If it still fails, a git process\nmay have crashed in this repository earlier:\nremove the file manually to continue.\n\nRolling back to previous HEAD (commit 2df2a3fbbcd8357c61c424b23c5b33a39c756c52).\nYou may try with --flatten to import flat history.\n    at Promise.all.then.arr (/Users/Omnious-Dev/.config/yarn/global/node_modules/execa/index.js:236:11)\n    at <anonymous>\n    at process._tickCallback (internal/process/next_tick.js:188:7)',
+86 error import   code: 128,
+86 error import   killed: false,
+86 error import   stdout: '',
+86 error import   stderr: 'fatal: Unable to create \'/Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/.git/index.lock\': File exists.\n\nAnother git process seems to be running in this repository, e.g.\nan editor opened by \'git commit\'. Please make sure all processes\nare terminated then try again. If it still fails, a git process\nmay have crashed in this repository earlier:\nremove the file manually to continue.\n',
+86 error import   failed: true,
+86 error import   signal: null,
+86 error import   cmd: 'git am -3 --keep-non-patch',
+86 error import   timedOut: false }
+87 error execute callback with error
+88 error Error: Failed to apply commit 9ce9cff.
+88 error Command failed: git am -3 --keep-non-patch
+88 error fatal: Unable to create '/Users/Omnious-Dev/Documents/Dev/module/omnious-bundler/.git/index.lock': File exists.
+88 error
+88 error Another git process seems to be running in this repository, e.g.
+88 error an editor opened by 'git commit'. Please make sure all processes
+88 error are terminated then try again. If it still fails, a git process
+88 error may have crashed in this repository earlier:
+88 error remove the file manually to continue.
+88 error
+88 error Rolling back to previous HEAD (commit 2df2a3fbbcd8357c61c424b23c5b33a39c756c52).
+88 error You may try with --flatten to import flat history.
+88 error     at Promise.all.then.arr (/Users/Omnious-Dev/.config/yarn/global/node_modules/execa/index.js:236:11)
+88 error     at <anonymous>
