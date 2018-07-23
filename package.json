@@ -1,5 +1,25 @@
 {
-	"devDependencies": {
-		"lerna": "^2.9.1"
-	}
+  "name": "omnious-bundler",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "release": "lerna publish",
+    "release:pre": "lerna publish --cd-version prerelease --preid=rc --npm-tag next"
+  },
+  "devDependencies": {
+    "@omnious/eslint-config": "^0.0.2-rc4",
+    "@omnious/eslint-config-react": "^0.0.2-rc5",
+    "eslint": "^5.2.0",
+    "lerna": "^2.11.0",
+    "prettier": "^1.13.7",
+    "rollup": "^0.63.4",
+    "stylelint": "^9.3.0",
+    "tslint": "^5.11.0",
+    "typescript": "^2.9.2"
+  }
 }
