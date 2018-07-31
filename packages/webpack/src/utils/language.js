@@ -8,13 +8,13 @@ const { srcDir } = require('./path');
 module.exports.reactJS = {
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.jsx?$/,
-        include: srcDir,
-        exclude: /node_modules/,
-        use: 'eslint-loader'
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.jsx?$/,
+      //   include: srcDir,
+      //   exclude: /node_modules/,
+      //   use: 'eslint-loader'
+      // },
       {
         test: /\.jsx?$/,
         include: srcDir,
