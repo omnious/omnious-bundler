@@ -14,6 +14,7 @@ const {
   containersDir,
   hocDir,
   packageJson,
+  reduxDir,
   srcDir,
   utilsDir
 } = require('./utils/path');
@@ -21,16 +22,6 @@ const {
 module.exports = {
   module: {
     rules: [
-      // {
-      //   test: /\.js$/,
-      //   include: srcDir,
-      //   use: 'source-map-loader',
-      //   enforce: 'pre'
-      // },
-      // {
-      //   test: /\.html$/,
-      //   loader: 'html-loader'
-      // },
       {
         test: /\.(jpg|png)$/,
         use: {
@@ -54,6 +45,7 @@ module.exports = {
       '@components': componentsDir,
       '@containers': containersDir,
       '@hoc': hocDir,
+      '@redux': reduxDir,
       '@utils': utilsDir
     },
     plugins: [new ModuleScopePlugin(srcDir, [packageJson])]

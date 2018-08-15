@@ -1,30 +1,18 @@
 // Global import
 const { resolve } = require('path');
 
-const root = process.cwd();
-const packageJson = resolve(root, 'package.json');
-const distDir = resolve(root, 'dist');
-const srcDir = resolve(root, 'src');
-const staticDir = resolve(root, 'static');
-const indexHtml = resolve(srcDir, 'index.html');
-const polyfills = resolve(srcDir, 'polyfills');
-const vendor = resolve(srcDir, 'vendor');
-const componentsDir = resolve(srcDir, 'components');
-const containersDir = resolve(srcDir, 'containers');
-const hocDir = resolve(srcDir, 'hoc');
-const utilsDir = resolve(srcDir, 'utils');
+const rootDir = process.cwd();
+const srcDir = resolve(rootDir, 'src');
 
-module.exports = {
-  componentsDir,
-  containersDir,
-  distDir,
-  hocDir,
-  indexHtml,
-  packageJson,
-  polyfills,
-  root,
-  srcDir,
-  staticDir,
-  utilsDir,
-  vendor
-};
+module.exports.componentsDir = resolve(srcDir, 'components');
+module.exports.containersDir = resolve(srcDir, 'containers');
+module.exports.distDir = resolve(rootDir, 'dist');
+module.exports.hocDir = resolve(srcDir, 'hoc');
+module.exports.indexHtml = resolve(srcDir, 'index.html');
+module.exports.packageJson = resolve(rootDir, 'package.json');
+module.exports.polyfills = resolve(srcDir, 'polyfills');
+module.exports.reduxDir = resolve(srcDir, 'redux');
+module.exports.srcDir = srcDir;
+module.exports.staticDir = resolve(rootDir, 'static');
+module.exports.utilsDir = resolve(srcDir, 'utils');
+module.exports.vendor = resolve(srcDir, 'vendor');

@@ -1,0 +1,32 @@
+{
+  "name": "@omnious/rollup",
+  "version": "0.1.0",
+  "description": "",
+  "homepage": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/rollup",
+  "author": "Omnious Dev Team <dev@omnious.com> (https://www.omnious.com)",
+  "maintainers": [
+    {
+      "name": "Euihyun Yang",
+      "email": "ykd1217@gmail.com"
+    }
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/rollup",
+  "keywords": [
+    "omnious",
+    "rollup"
+  ],
+  "engines": {
+    "node": ">= 8.10.0"
+  },
+  "main": "./bin/cli.js",
+  "scripts": {},
+  "dependencies": {
+    "commander": "^2.15.1",
+    "rollup": "^0.64.1"
+  },
+  "peerDependencies": {},
+  "bin": {
+    "omnious-rollup": "./bin/cli.js"
+  }
+}
