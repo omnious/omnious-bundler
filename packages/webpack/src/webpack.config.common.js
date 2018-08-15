@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * COMMON WEBPACK CONFIG
  */

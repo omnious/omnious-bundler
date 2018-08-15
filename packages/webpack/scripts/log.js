@@ -1,3 +1,5 @@
+'use strict';
+
 // Global import
 const chalk = require('chalk');
 

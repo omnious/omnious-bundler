@@ -1,3 +1,5 @@
+'use strict';
+
 // Global import
 const { resolve } = require('path');
 const { smart } = require('webpack-merge');

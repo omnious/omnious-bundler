@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 // Global import
 const commander = require('commander');
 
