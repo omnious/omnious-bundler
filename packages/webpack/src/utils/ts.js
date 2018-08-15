@@ -1,3 +1,5 @@
+'use strict';
+
 // Global import
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { ContextReplacementPlugin } = require('webpack');
@@ -12,12 +14,7 @@ module.exports.react = {
         test: /\.jsx?$/,
         include: srcDir,
         exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true
-          }
-        }
+        use: 'babel-loader'
       },
       {
         test: /\.tsx?$/,

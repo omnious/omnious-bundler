@@ -1,3 +1,5 @@
+'use strict';
+
 // Global import
 const rm = require('rimraf');
 

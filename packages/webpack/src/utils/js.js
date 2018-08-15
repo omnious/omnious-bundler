@@ -1,3 +1,5 @@
+'use strict';
+
 // Local import
 const { srcDir } = require('./path');
 

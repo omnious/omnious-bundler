@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * PROD WEBPACK CONFIG
  */
