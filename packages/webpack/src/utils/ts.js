@@ -5,29 +5,20 @@ const { ContextReplacementPlugin } = require('webpack');
 // Local import
 const { srcDir } = require('./path');
 
-module.exports.reactJS = {
+module.exports.react = {
   module: {
     rules: [
-      // {
-      //   enforce: 'pre',
-      //   test: /\.jsx?$/,
-      //   include: srcDir,
-      //   exclude: /node_modules/,
-      //   use: 'eslint-loader'
-      // },
       {
         test: /\.jsx?$/,
         include: srcDir,
         exclude: /node_modules/,
-        use: 'babel-loader'
-      }
-    ]
-  }
-};
-
-module.exports.reactTS = {
-  module: {
-    rules: [
+        use: {
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true
+          }
+        }
+      },
       {
         test: /\.tsx?$/,
         include: srcDir,
@@ -49,7 +40,7 @@ module.exports.reactTS = {
   ]
 };
 
-module.exports.angularTS = {
+module.exports.angular = {
   module: {
     rules: [
       {
@@ -77,4 +68,4 @@ module.exports.angularTS = {
   ]
 };
 
-module.exports.vueJS = {};
+module.exports.vue = {};
