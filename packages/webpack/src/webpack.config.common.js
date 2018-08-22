@@ -7,7 +7,6 @@
 // Global import
 const DotenvPlugin = require('dotenv-webpack');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const { IgnorePlugin } = require('webpack');
 
 // Local import
@@ -42,7 +41,7 @@ module.exports = {
   },
   resolve: {
     modules: ['node_modules'],
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
     alias: {
       '@components': componentsDir,
       '@containers': containersDir,
@@ -52,9 +51,5 @@ module.exports = {
     },
     plugins: [new ModuleScopePlugin(srcDir, [packageJson])]
   },
-  plugins: [
-    new DotenvPlugin({ systemvars: true }),
-    new IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new StyleLintPlugin()
-  ]
+  plugins: [new DotenvPlugin({ systemvars: true }), new IgnorePlugin(/^\.\/locale$/, /moment$/)]
 };

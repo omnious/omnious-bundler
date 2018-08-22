@@ -31,7 +31,6 @@ module.exports.react = {
   },
   plugins: [
     new ForkTsCheckerWebpackPlugin({
-      tslint: true,
       watch: srcDir
     })
   ]
@@ -59,7 +58,6 @@ module.exports.angular = {
   plugins: [
     new ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, srcDir),
     new ForkTsCheckerWebpackPlugin({
-      tslint: true,
       watch: srcDir
     })
   ]
