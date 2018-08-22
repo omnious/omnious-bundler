@@ -1,7 +1,6 @@
 'use strict';
 
 // Global import
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const { ContextReplacementPlugin } = require('webpack');
 
 // Local import
@@ -20,21 +19,18 @@ module.exports.react = {
         test: /\.tsx?$/,
         include: srcDir,
         exclude: /node_modules/,
-        use: {
-          loader: 'ts-loader',
-          options: {
-            transpileOnly: true
+        use: [
+          'babel-loader',
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true
+            }
           }
-        }
+        ]
       }
     ]
-  },
-  plugins: [
-    new ForkTsCheckerWebpackPlugin({
-      tslint: true,
-      watch: srcDir
-    })
-  ]
+  }
 };
 
 module.exports.angular = {
@@ -56,13 +52,7 @@ module.exports.angular = {
       }
     ]
   },
-  plugins: [
-    new ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, srcDir),
-    new ForkTsCheckerWebpackPlugin({
-      tslint: true,
-      watch: srcDir
-    })
-  ]
+  plugins: [new ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, srcDir)]
 };
 
 module.exports.vue = {};

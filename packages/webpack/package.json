@@ -1,6 +1,6 @@
 {
   "name": "@omnious/webpack",
-  "version": "0.7.3-rc.2",
+  "version": "0.7.3-rc.3",
   "description": "Webpack scripts and configurations for omnious.",
   "homepage": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/webpack",
   "author": "Omnious Dev Team <dev@omnious.com> (https://www.omnious.com)",
@@ -20,11 +20,16 @@
     "node": ">= 8.10.0"
   },
   "main": "./bin/cli.js",
+  "bin": {
+    "omnious-webpack": "./bin/cli.js"
+  },
   "scripts": {
     "build": "echo 'There`s no @omnious/webpack build'",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@babel/core": "^7.0.0-rc.2",
+    "babel-loader": "^8.0.0-beta.6",
     "commander": "^2.15.1",
     "compression-webpack-plugin": "^1.1.10",
     "copy-webpack-plugin": "^4.5.0",
@@ -32,7 +37,6 @@
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
     "file-loader": "^1.1.9",
-    "fork-ts-checker-webpack-plugin": "^0.4.3",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
@@ -40,7 +44,6 @@
     "postcss-loader": "^2.1.1",
     "react-dev-utils": "^6.0.0-next.3e165448",
     "style-loader": "^0.20.2",
-    "stylelint-webpack-plugin": "^0.10.5",
     "sw-precache-webpack-plugin": "^0.11.5",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "^0.6.2",
@@ -49,17 +52,9 @@
     "webpack-merge": "^4.1.2"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0-rc.1",
     "angular2-template-loader": "^0.6.2",
-    "babel-loader": "^8.0.0-beta.4",
-    "eslint": "^5.3.0",
-    "stylelint": "^9.4.0",
-    "ts-loader": "^4.4.1",
-    "tslint": "^5.11.0",
+    "ts-loader": "^4.5.0",
     "typescript": "^3.0.1",
-    "vue-loader": "^15.3.0"
-  },
-  "bin": {
-    "omnious-webpack": "./bin/cli.js"
+    "vue-loader": "^15.4.0"
   }
 }
