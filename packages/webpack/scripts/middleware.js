@@ -5,40 +5,37 @@ process.on('unhandledRejection', err => {
 });
 
 // Global import
-const clearConsole = require('react-dev-utils/clearConsole');
-const openBrowser = require('react-dev-utils/openBrowser');
+const express = require('express');
+const opn = require('opn');
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
 
 // Local import
 const log = require('./log');
 const webpackConfig = require('../src/Bundler');
 const { env, host, port } = require('../src/utils/env');
-const { staticDir } = require('../src/utils/path');
 
-module.exports.watch = options => {
+module.exports.middleware = options => {
   // Initialize console
-  clearConsole();
+  console.clear();
   log.start(`Starting build in ${env} mode`);
 
   // Set DevServer
   const devConfig = webpackConfig(env, options);
   const compiler = webpack(devConfig);
-  const devServer = new WebpackDevServer(compiler, {
-    contentBase: staticDir,
-    historyApiFallback: {
-      disableDotRule: true
-    },
-    host,
-    hotOnly: true,
-    inline: true,
-    noInfo: true,
-    port,
-    publicPath: devConfig.output.publicPath,
-    stats: {
-      colors: true
-    }
-  });
+  const devServer = express();
+
+  devServer.use(
+    devMiddleware(compiler, {
+      noInfo: true,
+      publicPath: devConfig.output.publicPath,
+      stats: {
+        colors: true
+      }
+    })
+  );
+  devServer.use(hotMiddleware(compiler));
 
   // Start server
   devServer.listen(port, host, err => {
@@ -47,7 +44,7 @@ module.exports.watch = options => {
     } else {
       const url = `http://${host}:${port}`;
       log.end(`Setting timer to open browser at ${url}, in ${env}`);
-      openBrowser(url);
+      opn(url);
     }
   });
 

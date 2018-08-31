@@ -7,7 +7,7 @@ const { smart } = require('webpack-merge');
 // Local import
 const commonConfig = require('./webpack.config.common');
 
-module.exports = (env, { add, lang, mode }) => {
+module.exports = (env, { add, lang, mode, task }) => {
   const targetLanguage = require(`./utils/${lang}`);
   let additionalConfig = {};
 
@@ -17,6 +17,11 @@ module.exports = (env, { add, lang, mode }) => {
 
   switch (env) {
     case 'development': {
+      if (task === 'middleware') {
+        const devConfig = require('./webpack.config.mid');
+        return smart(commonConfig, targetLanguage[mode], devConfig, additionalConfig);
+      }
+
       const devConfig = require('./webpack.config.dev');
       return smart(commonConfig, targetLanguage[mode], devConfig, additionalConfig);
     }

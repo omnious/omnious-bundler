@@ -32,13 +32,22 @@ if (!taskName) {
 function webpackScript(task, options = {}) {
   switch (task) {
     case 'build': {
-      const build = require('../scripts/build');
+      const { build } = require('../scripts/build');
       build(options);
       break;
     }
     case 'watch': {
-      const watch = require('../scripts/watch');
+      const { watch } = require('../scripts/watch');
       watch(options);
+      break;
+    }
+    case 'middleware': {
+      const { middleware } = require('../scripts/middleware');
+      const mergedOptions = {
+        ...options,
+        task
+      };
+      middleware(mergedOptions);
       break;
     }
     case 'test':
