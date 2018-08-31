@@ -7,6 +7,7 @@ process.on('unhandledRejection', err => {
 // Global import
 const express = require('express');
 const opn = require('opn');
+const { resolve } = require('path');
 const webpack = require('webpack');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
@@ -16,7 +17,7 @@ const log = require('./log');
 const webpackConfig = require('../src/Bundler');
 const { env, host, port } = require('../src/utils/env');
 
-module.exports.middleware = options => {
+module.exports.useExpress = options => {
   // Initialize console
   console.clear();
   log.start(`Starting build in ${env} mode`);
@@ -26,16 +27,26 @@ module.exports.middleware = options => {
   const compiler = webpack(devConfig);
   const devServer = express();
 
+  // Set middleware
   devServer.use(
     devMiddleware(compiler, {
-      noInfo: true,
-      publicPath: devConfig.output.publicPath,
-      stats: {
-        colors: true
-      }
+      logLevel: 'warn',
+      publicPath: devConfig.output.publicPath
     })
   );
   devServer.use(hotMiddleware(compiler));
+  devServer.use('*', (req, res, next) => {
+    const filename = resolve(devConfig.output.path, 'index.html');
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.set('content-type', 'text/html');
+      res.send(result);
+      res.end();
+    });
+  });
 
   // Start server
   devServer.listen(port, host, err => {
@@ -51,7 +62,6 @@ module.exports.middleware = options => {
   for (const sig of ['SIGINT', 'SIGTERM']) {
     process.on(sig, code => {
       log.info('Shutting down app');
-      devServer.close();
       process.exit(code || 0);
     });
   }

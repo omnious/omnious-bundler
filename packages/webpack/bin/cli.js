@@ -41,13 +41,22 @@ function webpackScript(task, options = {}) {
       watch(options);
       break;
     }
-    case 'middleware': {
-      const { middleware } = require('../scripts/middleware');
+    case 'express': {
+      const { useExpress } = require('../scripts/express');
       const mergedOptions = {
         ...options,
         task
       };
-      middleware(mergedOptions);
+      useExpress(mergedOptions);
+      break;
+    }
+    case 'koa': {
+      const { useKoa } = require('../scripts/koa');
+      const mergedOptions = {
+        ...options,
+        task
+      };
+      useKoa(mergedOptions);
       break;
     }
     case 'test':

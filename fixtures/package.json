@@ -1,0 +1,14 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dashboard -- omnious-webpack koa"
+  },
+  "dependencies": {
+    "@omnious/webpack": "../packages/webpack",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}

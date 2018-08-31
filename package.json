@@ -9,6 +9,8 @@
   "devDependencies": {
     "@omnious/eslint-config": "^0.1.1",
     "@types/express": "^4.16.0",
+    "@types/koa": "^2.0.46",
+    "@types/koa-webpack": "^5.0.1",
     "@types/node": "^10.9.3",
     "@types/react": "^16.4.13",
     "@types/webpack": "^4.4.11",

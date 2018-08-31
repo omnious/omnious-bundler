@@ -7,6 +7,7 @@
 // Global import
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 // Local import
 const { CDN_URL, FACEBOOK_ID, GOOGLE_ID } = require('./utils/env');
@@ -43,6 +44,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
+    new DashboardPlugin(),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: './index.html',
