@@ -6,7 +6,6 @@ process.on('unhandledRejection', err => {
 
 // Global import
 const Koa = require('koa');
-// const koaWebpack = require('koa-webpack');
 const opn = require('opn');
 const { resolve } = require('path');
 const { PassThrough } = require('stream');
@@ -57,7 +56,6 @@ module.exports.useKoa = async options => {
       {
         write: stream.write.bind(stream),
         writeHead: (status, headers) => {
-          console.log('headers!', headers);
           ctx.status = status;
           ctx.set(headers);
         }
@@ -66,20 +64,23 @@ module.exports.useKoa = async options => {
     );
   });
   devServer.use(async (ctx, next) => {
-    console.log('enter!!!');
     const filename = resolve(devConfig.output.path, 'index.html');
-    const result = await compiler.outputFileSystem.readFile(filename);
-    console.log('check!', result);
-    // , (err, result) => {
-    //   if (err) {
-    //     next(err);
-    //   }
 
-    //   ctx.set('content-type', 'text/event-stream');
-    //   ctx.body = result;
-    // });
-    // ctx.response.type = 'text/html';
-    // ctx.response.body = middleware.devMiddleware.fileSystem.createReadStream(filename);
+    try {
+      const result = await new Promise((resolve, reject) => {
+        compiler.outputFileSystem.readFile(filename, (err, output) => {
+          if (err) {
+            reject(err);
+          }
+
+          resolve(output);
+        });
+      });
+      ctx.set('content-type', 'text/html');
+      ctx.body = result;
+    } catch (err) {
+      next(err);
+    }
   });
 
   // Start server
@@ -96,7 +97,6 @@ module.exports.useKoa = async options => {
   for (const sig of ['SIGINT', 'SIGTERM']) {
     process.on(sig, code => {
       log.info('Shutting down app');
-      devServer.close();
       process.exit(code || 0);
     });
   }

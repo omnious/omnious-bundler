@@ -17,11 +17,6 @@ module.exports = (env, { add, lang, mode, task }) => {
 
   switch (env) {
     case 'development': {
-      if (task === 'express') {
-        const devConfig = require('./webpack.config.express');
-        return smart(commonConfig, targetLanguage[mode], devConfig, additionalConfig);
-      }
-
       if (task === 'koa') {
         const devConfig = require('./webpack.config.koa');
         return smart(commonConfig, targetLanguage[mode], devConfig, additionalConfig);
