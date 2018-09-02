@@ -7,6 +7,8 @@
 
 # omnious-bundler
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/omnious-dev/omnious-bundler.svg)](https://greenkeeper.io/)
+
 [![CircleCI][circleci]][circleci.url]
 [![lerna][lerna]][lerna.url]
 
