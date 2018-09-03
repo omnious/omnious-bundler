@@ -32,13 +32,22 @@ if (!taskName) {
 function webpackScript(task, options = {}) {
   switch (task) {
     case 'build': {
-      const build = require('../scripts/build');
+      const { build } = require('../scripts/build');
       build(options);
       break;
     }
     case 'watch': {
-      const watch = require('../scripts/watch');
+      const { watch } = require('../scripts/watch');
       watch(options);
+      break;
+    }
+    case 'koa': {
+      const { useKoa } = require('../scripts/koa');
+      const mergedOptions = {
+        ...options,
+        task
+      };
+      useKoa(mergedOptions);
       break;
     }
     case 'test':

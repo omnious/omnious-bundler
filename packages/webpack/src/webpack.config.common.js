@@ -51,5 +51,10 @@ module.exports = {
     },
     plugins: [new ModuleScopePlugin(srcDir, [packageJson])]
   },
-  plugins: [new DotenvPlugin({ systemvars: true }), new IgnorePlugin(/^\.\/locale$/, /moment$/)]
+  plugins: [
+    new DotenvPlugin({
+      systemvars: true
+    }),
+    new IgnorePlugin(/^\.\/locale$/, /moment$/)
+  ]
 };

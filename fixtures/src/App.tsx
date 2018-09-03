@@ -5,7 +5,7 @@ import { Button } from './Button';
 
 export const App = () => (
   <div>
-    hello123
+    hello world
     <Button />
   </div>
 );

@@ -7,10 +7,9 @@
 
 # omnious-bundler
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/omnious-dev/omnious-bundler.svg)](https://greenkeeper.io/)
-
 [![CircleCI][circleci]][circleci.url]
 [![lerna][lerna]][lerna.url]
+[![greenkeeper][greenkeeper]][greenkeeper.url]
 
 ## Packages
 
@@ -28,5 +27,7 @@
 [circleci.url]: https://circleci.com/gh/omnious-dev/omnious-bundler
 [lerna]: https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg
 [lerna.url]: https://lernajs.io/
+[greenkeeper]: https://badges.greenkeeper.io/omnious-dev/omnious-bundler.svg
+[greenkeeper.url]: https://greenkeeper.io/
 [@omnious/webpack]: https://img.shields.io/npm/v/@omnious/webpack.svg?label=@omnious/webpack
 [@omnious/webpack.url]: https://www.npmjs.com/package/@omnious/webpack

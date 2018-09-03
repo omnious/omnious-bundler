@@ -16,7 +16,7 @@ const webpackConfig = require('../src/Bundler');
 const { env, host, port } = require('../src/utils/env');
 const { staticDir } = require('../src/utils/path');
 
-module.exports = options => {
+module.exports.watch = options => {
   // Initialize console
   clearConsole();
   log.start(`Starting build in ${env} mode`);
@@ -34,7 +34,7 @@ module.exports = options => {
     inline: true,
     noInfo: true,
     port,
-    publicPath: '/',
+    publicPath: devConfig.output.publicPath,
     stats: {
       colors: true
     }

@@ -13,6 +13,7 @@ module.exports.hocDir = resolve(srcDir, 'hoc');
 module.exports.indexHtml = resolve(srcDir, 'index.html');
 module.exports.packageJson = resolve(rootDir, 'package.json');
 module.exports.polyfills = resolve(srcDir, 'polyfills');
+module.exports.publicDir = resolve(rootDir, 'public');
 module.exports.reduxDir = resolve(srcDir, 'redux');
 module.exports.srcDir = srcDir;
 module.exports.staticDir = resolve(rootDir, 'static');

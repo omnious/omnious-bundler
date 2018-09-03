@@ -17,7 +17,7 @@ const webpackConfig = require('../src/Bundler');
 const { env } = require('../src/utils/env');
 const { distDir } = require('../src/utils/path');
 
-module.exports = async options => {
+module.exports.build = async options => {
   try {
     await remove(distDir);
 

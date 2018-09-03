@@ -1,12 +1,7 @@
 {
   "groups": {
     "default": {
-      "packages": [
-        "package.json",
-        "packages/rollup/package.json",
-        "packages/webpack/examples/package.json",
-        "packages/webpack/package.json"
-      ]
+      "packages": ["package.json", "packages/rollup/package.json", "packages/webpack/package.json"]
     }
   }
 }

@@ -5,15 +5,17 @@ import { App } from './App';
 
 const mountNode = document.getElementById('React');
 
-const init = () => {
-  render(<App />, mountNode);
+const init = RootComponent => {
+  render(<RootComponent />, mountNode);
 };
 
 if (module.hot) {
   module.hot.accept('./App', () => {
+    const { App } = require('./App');
+
     unmountComponentAtNode(mountNode);
-    requestAnimationFrame(init);
+    requestAnimationFrame(() => init(App));
   });
 }
 
-init();
+init(App);
