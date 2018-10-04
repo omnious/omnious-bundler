@@ -11,19 +11,12 @@ module.exports = (env, { add, lang, mode, task }) => {
   let mergedConfig = {};
 
   if (lang === 'ts') {
-    const tsConfig = require(`./utils/ts`);
-    mergedConfig = {
-      ...mergedConfig,
-      ...tsConfig[mode]
-    };
+    mergedConfig = require(`./utils/ts`);
   }
 
   if (add) {
     const additionalConfig = require(resolve(process.cwd(), add));
-    mergedConfig = {
-      ...mergedConfig,
-      additionalConfig
-    };
+    mergedConfig = smart(mergedConfig, additionalConfig);
   }
 
   switch (env) {
