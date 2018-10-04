@@ -8,26 +8,37 @@ const { smart } = require('webpack-merge');
 const commonConfig = require('./webpack.config.common');
 
 module.exports = (env, { add, lang, mode, task }) => {
-  const targetLanguage = require(`./utils/${lang}`);
-  let additionalConfig = {};
+  let mergedConfig = {};
+
+  if (lang === 'ts') {
+    const tsConfig = require(`./utils/ts`);
+    mergedConfig = {
+      ...mergedConfig,
+      ...tsConfig[mode]
+    };
+  }
 
   if (add) {
-    additionalConfig = require(resolve(process.cwd(), add));
+    const additionalConfig = require(resolve(process.cwd(), add));
+    mergedConfig = {
+      ...mergedConfig,
+      additionalConfig
+    };
   }
 
   switch (env) {
     case 'development': {
       if (task === 'koa') {
         const devConfig = require('./webpack.config.koa');
-        return smart(commonConfig, targetLanguage[mode], devConfig, additionalConfig);
+        return smart(commonConfig, devConfig, mergedConfig);
       }
 
       const devConfig = require('./webpack.config.dev');
-      return smart(commonConfig, targetLanguage[mode], devConfig, additionalConfig);
+      return smart(commonConfig, devConfig, mergedConfig);
     }
     case 'production': {
       const prodConfig = require('./webpack.config.prod');
-      return smart(commonConfig, targetLanguage[mode], prodConfig, additionalConfig);
+      return smart(commonConfig, prodConfig, mergedConfig);
     }
     case 'test':
     default:

@@ -24,6 +24,24 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.jsx?$/,
+        include: srcDir,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          'babel-loader',
+          {
+            loader: '@svgr/webpack',
+            options: {
+              babel: false
+            }
+          }
+        ]
+      },
+      {
         test: /\.(jpg|png)$/,
         use: {
           loader: 'url-loader',
@@ -38,7 +56,7 @@ module.exports = {
         use: 'raw-loader'
       },
       {
-        test: /\.(gif|svg|otf|ttf)$/,
+        test: /\.(gif|otf|ttf)$/,
         use: 'file-loader'
       }
     ]
