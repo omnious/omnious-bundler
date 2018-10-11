@@ -10,7 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
+// const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { LoaderOptionsPlugin } = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -127,7 +127,7 @@ module.exports = {
       filename: '[name].[contenthash:8].css',
       chunkFilename: '[name].[contenthash:8].chunk.css'
     }),
-    new PrepackWebpackPlugin(),
+    // new PrepackWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
       swDest: 'sw.js',
       clientsClaim: true,
