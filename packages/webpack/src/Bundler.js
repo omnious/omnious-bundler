@@ -7,11 +7,12 @@ const { smart } = require('webpack-merge');
 // Local import
 const commonConfig = require('./webpack.config.common');
 
-module.exports = (env, { add, lang, task }) => {
+module.exports = (env, { add, lang, mode, task }) => {
   let mergedConfig = {};
 
   if (lang === 'ts') {
-    mergedConfig = require('../utils/ts');
+    const tsConfig = require('../utils/ts');
+    mergedConfig = tsConfig[mode];
   }
 
   if (add) {
