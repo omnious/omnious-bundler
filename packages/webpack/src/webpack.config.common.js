@@ -19,7 +19,7 @@ const {
   reduxDir,
   srcDir,
   utilsDir
-} = require('./utils/path');
+} = require('../utils/path');
 
 module.exports = {
   output: {
