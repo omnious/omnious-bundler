@@ -9,20 +9,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 
 // Local import
-const { CDN_URL, FACEBOOK_ID, GOOGLE_ID, host, port } = require('./utils/env');
-const { distDir, indexHtml, srcDir } = require('./utils/path');
+const {
+  CDN_URL,
+  FACEBOOK_APP_ID,
+  FACEBOOK_PIXEL_ID,
+  GA_TRACKING_ID,
+  HOST,
+  NAVER_APP_ID,
+  PORT
+} = require('../utils/env');
+const { indexHtml, srcDir } = require('../utils/path');
 
 module.exports = {
   mode: 'development',
-  entry: [
-    `webpack-dev-server/client?http://${host}:${port}`,
-    'webpack/hot/only-dev-server',
-    srcDir
-  ],
+  entry: [`webpack-dev-server/client?http://${HOST}:${PORT}`, srcDir],
   output: {
-    path: distDir,
     filename: '[name].js',
-    publicPath: '/',
     chunkFilename: '[name].chunk.js'
   },
   module: {
@@ -49,9 +51,15 @@ module.exports = {
   plugins: [
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: './index.html',
+      filename: 'index.html',
       template: indexHtml,
-      templateParameters: { CDN_URL, FACEBOOK_ID, GOOGLE_ID },
+      templateParameters: {
+        CDN_URL,
+        FACEBOOK_APP_ID,
+        FACEBOOK_PIXEL_ID,
+        GA_TRACKING_ID,
+        NAVER_APP_ID
+      },
       inject: true,
       chunksSortMode: 'none'
     })

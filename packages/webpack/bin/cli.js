@@ -58,6 +58,6 @@ function webpackScript(task, options = {}) {
 
 webpackScript(taskName, {
   mode: program.mode || 'react',
-  lang: program.lang || 'ts',
+  lang: program.lang || 'js',
   add: program.add
 });
