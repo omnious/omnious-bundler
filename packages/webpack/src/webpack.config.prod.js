@@ -10,7 +10,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const PrepackWebpackPlugin = require('prepack-webpack-plugin');
+const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { LoaderOptionsPlugin } = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -87,11 +87,11 @@ module.exports = {
   },
   plugins: [
     new CompressionPlugin({
-      asset: '[path].gz[query]',
       algorithm: 'gzip',
+      filename: '[path].gz[query]',
+      minRatio: 0.8,
       test: /\.(js|html)$/,
-      threshold: 10240,
-      minRatio: 0.8
+      threshold: 10240
     }),
     new CopyWebpackPlugin([{ from: staticDir, to: '.' }]),
     new HtmlWebpackPlugin({
@@ -129,7 +129,7 @@ module.exports = {
     }),
     new PrepackWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
-      swDist: 'sw.js',
+      swDest: 'sw.js',
       clientsClaim: true,
       skipWaiting: true
     })
