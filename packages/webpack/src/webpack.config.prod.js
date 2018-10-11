@@ -10,14 +10,19 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { resolve } = require('path');
 const { LoaderOptionsPlugin } = require('webpack');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // Local import
-const { CDN_URL, FACEBOOK_ID, GOOGLE_ID, tag } = require('./utils/env');
-const { distDir, indexHtml, polyfills, srcDir, staticDir, vendor } = require('./utils/path');
+const {
+  CDN_URL,
+  FACEBOOK_APP_ID,
+  FACEBOOK_PIXEL_ID,
+  GA_TRACKING_ID,
+  NAVER_APP_ID
+} = require('../utils/env');
+const { indexHtml, polyfills, srcDir, staticDir, vendor } = require('../utils/path');
 
 module.exports = {
   mode: 'production',
@@ -27,9 +32,7 @@ module.exports = {
     polyfills
   },
   output: {
-    path: resolve(distDir, tag),
     filename: '[name].[chunkhash:8].js',
-    publicPath: `/${tag}/`,
     chunkFilename: '[name].[chunkhash:8].chunk.js'
   },
   module: {
@@ -89,11 +92,17 @@ module.exports = {
       threshold: 10240,
       minRatio: 0.8
     }),
-    new CopyWebpackPlugin([{ from: staticDir, to: '..' }]),
+    new CopyWebpackPlugin([{ from: staticDir, to: '.' }]),
     new HtmlWebpackPlugin({
-      filename: '../index.html',
+      filename: 'index.html',
       template: indexHtml,
-      templateParameters: { CDN_URL, FACEBOOK_ID, GOOGLE_ID },
+      templateParameters: {
+        CDN_URL,
+        FACEBOOK_APP_ID,
+        FACEBOOK_PIXEL_ID,
+        GA_TRACKING_ID,
+        NAVER_APP_ID
+      },
       inject: true,
       minify: {
         removeComments: true,
@@ -117,13 +126,10 @@ module.exports = {
       filename: '[name].[contenthash:8].css',
       chunkFilename: '[name].[contenthash:8].chunk.css'
     }),
-    new SWPrecacheWebpackPlugin({
-      cacheId: 'cached-app',
-      minify: true
-      // staticFileGlobs: [
-      //   'src/**/**.*',
-      //   'src/**.html'
-      // ]
+    new WorkboxPlugin.GenerateSW({
+      swDist: 'sw.js',
+      clientsClaim: true,
+      skipWaiting: true
     })
   ]
 };

@@ -11,7 +11,7 @@ module.exports = (env, { add, lang, mode, task }) => {
   let mergedConfig = {};
 
   if (lang === 'ts') {
-    mergedConfig = require(`./utils/ts`);
+    mergedConfig = require('./utils/ts');
   }
 
   if (add) {

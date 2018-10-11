@@ -16,15 +16,15 @@ const hotMiddleware = require('webpack-hot-middleware');
 // Local import
 const log = require('./log');
 const webpackConfig = require('../src/Bundler');
-const { env, host, port } = require('../src/utils/env');
+const { HOST, NODE_ENV, PORT } = require('../utils/env');
 
 module.exports.useKoa = async options => {
   // Initialize console
   console.clear();
-  log.start(`Starting build in ${env} mode`);
+  log.start(`Starting build in ${NODE_ENV} mode`);
 
   // Set DevServer
-  const devConfig = webpackConfig(env, options);
+  const devConfig = webpackConfig(NODE_ENV, options);
   const compiler = webpack(devConfig);
   const devServer = new Koa();
   const expressDevMiddleware = devMiddleware(compiler, {
@@ -84,12 +84,12 @@ module.exports.useKoa = async options => {
   });
 
   // Start server
-  devServer.listen(port, host, err => {
+  devServer.listen(PORT, HOST, err => {
     if (err) {
       log.error(err);
     } else {
-      const url = `http://${host}:${port}`;
-      log.end(`Setting timer to open browser at ${url}, in ${env}`);
+      const url = `http://${HOST}:${PORT}`;
+      log.end(`Setting timer to open browser at ${url}, in ${NODE_ENV}`);
       opn(url);
     }
   });

@@ -7,19 +7,22 @@
 // Global import
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
-const DashboardPlugin = require('webpack-dashboard/plugin');
 
 // Local import
-const { CDN_URL, FACEBOOK_ID, GOOGLE_ID } = require('./utils/env');
-const { distDir, indexHtml, srcDir } = require('./utils/path');
+const {
+  CDN_URL,
+  FACEBOOK_APP_ID,
+  FACEBOOK_PIXEL_ID,
+  GA_TRACKING_ID,
+  NAVER_APP_ID
+} = require('../utils/env');
+const { indexHtml, srcDir } = require('../utils/path');
 
 module.exports = {
   mode: 'development',
   entry: ['webpack-hot-middleware/client', srcDir],
   output: {
-    path: distDir,
     filename: '[name].js',
-    publicPath: '/',
     chunkFilename: '[name].chunk.js'
   },
   module: {
@@ -44,12 +47,17 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
-    new DashboardPlugin(),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: './index.html',
+      filename: 'index.html',
       template: indexHtml,
-      templateParameters: { CDN_URL, FACEBOOK_ID, GOOGLE_ID },
+      templateParameters: {
+        CDN_URL,
+        FACEBOOK_APP_ID,
+        FACEBOOK_PIXEL_ID,
+        GA_TRACKING_ID,
+        NAVER_APP_ID
+      },
       inject: true,
       chunksSortMode: 'none'
     })

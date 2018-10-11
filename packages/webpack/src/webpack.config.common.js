@@ -13,6 +13,7 @@ const { IgnorePlugin } = require('webpack');
 const {
   componentsDir,
   containersDir,
+  distDir,
   hocDir,
   packageJson,
   reduxDir,
@@ -21,6 +22,10 @@ const {
 } = require('./utils/path');
 
 module.exports = {
+  output: {
+    path: distDir,
+    publicPath: '/'
+  },
   module: {
     rules: [
       {
@@ -38,7 +43,8 @@ module.exports = {
             options: {
               babel: false
             }
-          }
+          },
+          'file-loader'
         ]
       },
       {
