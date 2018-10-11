@@ -6,33 +6,21 @@ const dotenv = require('dotenv');
 // Load environment variables from .env file
 dotenv.config();
 
-const {
-  CDN_URL = '',
-  CIRCLE_TAG = 'prod',
-  FACEBOOK_APP_ID = '',
-  FACEBOOK_PIXEL_ID = '',
-  GA_TRACKING_ID = 'UA-XXXXX-Y',
-  NAVER_APP_ID = '',
-  NODE_ENV = 'development',
-  PORT = 3000
-} = process.env;
-
+const NODE_ENV = process.env.NODE_ENV || 'development';
 const configValue = {
   // base env
   base: {
-    CDN_URL,
-    FACEBOOK_APP_ID,
-    FACEBOOK_PIXEL_ID,
-    GA_TRACKING_ID,
-    NAVER_APP_ID,
+    CDN_URL: process.env.CDN_URL || '',
+    FACEBOOK_APP_ID: process.env.FACEBOOK_APP_ID || '',
+    FACEBOOK_PIXEL_ID: process.env.FACEBOOK_PIXEL_ID || '',
+    GA_TRACKING_ID: process.env.GA_TRACKING_ID || '',
+    NAVER_APP_ID: process.env.NAVER_APP_ID || '',
     NODE_ENV
   },
-  production: {
-    TAG: CIRCLE_TAG
-  },
+  production: {},
   development: {
     HOST: 'localhost',
-    PORT
+    PORT: process.env.PORT || 3000
   },
   test: {}
 };
