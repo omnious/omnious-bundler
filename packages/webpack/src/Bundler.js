@@ -7,13 +7,8 @@ const { smart } = require('webpack-merge');
 // Local import
 const commonConfig = require('./webpack.config.common');
 
-module.exports = (env, { add, lang, mode, task }) => {
+module.exports = (env, { add, mode }) => {
   let mergedConfig = {};
-
-  if (lang === 'ts') {
-    const tsConfig = require('../utils/ts');
-    mergedConfig = tsConfig[mode];
-  }
 
   if (add) {
     const additionalConfig = require(resolve(process.cwd(), add));
@@ -22,10 +17,10 @@ module.exports = (env, { add, lang, mode, task }) => {
 
   switch (env) {
     case 'development': {
-      if (task === 'koa') {
-        const devConfig = require('./webpack.config.koa');
-        return smart(commonConfig, devConfig, mergedConfig);
-      }
+      // if (task === 'koa') {
+      //   const devConfig = require('./webpack.config.koa');
+      //   return smart(commonConfig, devConfig, mergedConfig);
+      // }
 
       const devConfig = require('./webpack.config.dev');
       return smart(commonConfig, devConfig, mergedConfig);

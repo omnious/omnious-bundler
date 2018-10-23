@@ -24,8 +24,7 @@ module.exports = {
   mode: 'development',
   entry: [`webpack-dev-server/client?http://${HOST}:${PORT}`, srcDir],
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js'
+    filename: '[name].js'
   },
   module: {
     rules: [

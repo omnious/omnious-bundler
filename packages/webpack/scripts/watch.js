@@ -13,7 +13,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const log = require('./log');
 const webpackConfig = require('../src/Bundler');
 const { HOST, NODE_ENV, PORT } = require('../utils/env');
-const { staticDir } = require('../utils/path');
+const { publicDir } = require('../utils/path');
 
 module.exports.watch = options => {
   // Initialize console
@@ -24,7 +24,7 @@ module.exports.watch = options => {
   const devConfig = webpackConfig(NODE_ENV, options);
   const compiler = webpack(devConfig);
   const devServer = new WebpackDevServer(compiler, {
-    contentBase: staticDir,
+    contentBase: publicDir,
     historyApiFallback: {
       disableDotRule: true
     },
