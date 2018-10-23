@@ -13,6 +13,7 @@ const { IgnorePlugin } = require('webpack');
 const {
   componentsDir,
   containersDir,
+  contextsDir,
   distDir,
   hocDir,
   packageJson,
@@ -29,7 +30,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         include: srcDir,
         exclude: /node_modules/,
         use: 'babel-loader'
@@ -58,12 +59,12 @@ module.exports = {
         }
       },
       {
-        test: /\.md$/,
-        use: 'raw-loader'
-      },
-      {
         test: /\.(gif|otf|ttf)$/,
         use: 'file-loader'
+      },
+      {
+        test: /\.md$/,
+        use: 'raw-loader'
       }
     ]
   },
@@ -73,6 +74,7 @@ module.exports = {
     alias: {
       '@components': componentsDir,
       '@containers': containersDir,
+      '@contexts': contextsDir,
       '@hoc': hocDir,
       '@redux': reduxDir,
       '@utils': utilsDir

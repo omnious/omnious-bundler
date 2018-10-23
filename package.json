@@ -5,7 +5,12 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "build": "cd fixtures && node ../packages/webpack/bin/cli.js build"
+  },
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.0.0",
+    "@babel/preset-typescript": "^7.1.0",
     "@omnious/eslint-config": "^0.1.1",
     "@types/compression-webpack-plugin": "^0.4.2",
     "@types/copy-webpack-plugin": "^4.4.2",
@@ -27,6 +32,8 @@
     "eslint": "^5.4.0",
     "prettier": "^1.14.2",
     "prettier-eslint": "^8.8.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "ts-loader": "^5.2.1",
     "tslint": "^5.11.0",
     "typescript": "^3.1.2",

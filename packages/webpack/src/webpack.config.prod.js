@@ -23,7 +23,7 @@ const {
   GA_TRACKING_ID,
   NAVER_APP_ID
 } = require('../utils/env');
-const { indexHtml, polyfills, srcDir, staticDir } = require('../utils/path');
+const { indexHtml, polyfills, publicDir, srcDir } = require('../utils/path');
 
 module.exports = {
   mode: 'production',
@@ -98,7 +98,7 @@ module.exports = {
       test: /\.(js|html)$/,
       threshold: 10240
     }),
-    new CopyWebpackPlugin([{ from: staticDir, to: '.' }]),
+    new CopyWebpackPlugin([{ from: publicDir, to: '.' }]),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: indexHtml,
