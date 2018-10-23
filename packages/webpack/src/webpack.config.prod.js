@@ -23,18 +23,16 @@ const {
   GA_TRACKING_ID,
   NAVER_APP_ID
 } = require('../utils/env');
-const { indexHtml, polyfills, srcDir, staticDir, vendor } = require('../utils/path');
+const { indexHtml, polyfills, srcDir, staticDir } = require('../utils/path');
 
 module.exports = {
   mode: 'production',
   entry: {
     bundle: srcDir,
-    vendor,
     polyfills
   },
   output: {
-    filename: '[name].[chunkhash:8].js',
-    chunkFilename: '[name].[chunkhash:8].chunk.js'
+    filename: '[name].[chunkhash:8].js'
   },
   module: {
     rules: [
@@ -58,7 +56,9 @@ module.exports = {
   },
   devtool: 'source-map',
   optimization: {
+    minimize: true,
     minimizer: [
+      new OptimizeCSSAssetsPlugin(),
       new UglifyJsPlugin({
         uglifyOptions: {
           compress: {
@@ -76,14 +76,19 @@ module.exports = {
         cache: true,
         parallel: true,
         sourceMap: true
-      }),
-      new OptimizeCSSAssetsPlugin()
+      })
     ],
-    noEmitOnErrors: true,
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        vendor: {
+          test: /[\\\/]node_modules[\\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
     },
-    runtimeChunk: true
+    runtimeChunk: 'single',
+    noEmitOnErrors: true
   },
   plugins: [
     new CompressionPlugin({
@@ -124,8 +129,7 @@ module.exports = {
       debug: false
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash:8].css',
-      chunkFilename: '[name].[contenthash:8].chunk.css'
+      filename: '[name].[contenthash:8].css'
     }),
     // new PrepackWebpackPlugin(),
     new WorkboxPlugin.GenerateSW({
