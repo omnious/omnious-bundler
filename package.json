@@ -1,7 +1,6 @@
 {
   "scripts": {
-    "bootstrap": "lerna clean -y && lerna bootstrap",
-    "build": "cd fixtures && node ../packages/webpack/bin/cli.js build"
+    "bootstrap": "lerna clean -y && lerna bootstrap"
   },
   "dependencies": {
     "react": "16.6.3",
@@ -37,6 +36,7 @@
   },
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ]
 }

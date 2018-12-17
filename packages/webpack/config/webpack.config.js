@@ -9,12 +9,13 @@ const {
   FACEBOOK_APP_ID,
   FACEBOOK_PIXEL_ID,
   GA_TRACKING_ID,
-  NAVER_APP_ID
-} = require('../config/env');
+  NAVER_APP_ID,
+  HOST,
+  PORT
+} = require('./env');
+const { indexHtml, publicDir } = require('./path');
 
-const publicDir = resolve(process.cwd(), 'public');
 const srcDir = resolve(process.cwd(), 'src');
-const indexHtml = resolve(publicDir, 'index.html');
 
 module.exports = {
   mode: 'development',
@@ -105,16 +106,18 @@ module.exports = {
   // serve: {},
   // stats: '',
   devServer: {
-    contentBase: publicDir,
+    clientLogLevel: 'none',
     compress: true,
+    contentBase: publicDir,
     historyApiFallback: {
       disableDotRule: true
     },
-    host: 'localhost',
+    host: HOST,
     hot: true,
-    // noInfo: true,
-    port: 3000,
-    // quiet: true,
+    port: PORT,
+    publicPath: '/',
+    quiet: true,
+    watchContentBase: true,
     watchOptions: {
       ignored: /node_modules/
     }

@@ -12,9 +12,8 @@ program
   .arguments('<task>')
   .usage('<task> [options]')
   // .option('-m, --mode [value]', 'target UI library')
-  // .option('-a, --add [value]', 'additional webpack config')
-  .action(task => {
-    taskName = task;
+  .action(name => {
+    taskName = name;
   })
   .parse(process.argv);
 
@@ -30,12 +29,10 @@ function webpackScript(task, options) {
       break;
     }
     default:
-      console.log(`Unknown taskName: ${task}.`);
-      console.log('Usage: omnious-webpack <task> [options]');
+      console.log(`Unknown task: ${task}.`);
   }
 }
 
 webpackScript(taskName, {
-  add: program.add,
   mode: program.mode || 'react'
 });

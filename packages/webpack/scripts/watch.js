@@ -9,21 +9,20 @@ const { resolve } = require('path');
 
 // Local import
 const { logger } = require('../utils/logger');
-const webpackConfig = require('./webpack.config');
+const webpackConfig = require('../config/webpack.config');
 const { HOST, NODE_ENV, PORT } = require('../config/env');
 // const { publicDir } = require('../utils/path');
 
 const publicDir = resolve(process.cwd(), 'public');
 
-function main(options) {
+function main() {
   // Initialize console
-  // console.clear();
+  console.clear();
   logger.start(`Starting build in ${NODE_ENV} mode`);
 
   // Set DevServer
   // const devConfig = webpackConfig(NODE_ENV, options);
   // const compiler = webpack(devConfig);
-  console.log(webpackConfig);
   let compiler;
 
   try {
@@ -50,22 +49,17 @@ function main(options) {
   // });
 
   // Start server
-  devServer.listen(PORT, err => {
+  devServer.listen(PORT, HOST, err => {
     if (err) {
-      logger.error(err);
+      throw new Error(err);
     }
 
-    // const url = `http://${HOST}:${PORT}`;
-    // log.end(`Setting timer to open browser at ${url}, in ${NODE_ENV}`);
+    logger.info('Compile client bundles');
   });
-
-  // for (const sig of ['SIGINT', 'SIGTERM']) {
-  //   process.on(sig, code => {
-  //     log.info('Shutting down app');
-  //     devServer.close();
-  //     process.exit(code || 0);
-  //   });
-  // }
 }
 
-main();
+try {
+  main();
+} catch (err) {
+  logger.error(err);
+}

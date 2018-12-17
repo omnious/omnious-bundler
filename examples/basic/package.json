@@ -1,0 +1,10 @@
+{
+  "name": "example-basic",
+  "version": "1.0.0",
+  "scripts": {
+    "develop": "omnious-webpack watch"
+  },
+  "devDependencies": {
+    "@omnious/webpack": "^0.9.5"
+  }
+}
