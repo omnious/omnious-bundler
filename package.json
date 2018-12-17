@@ -32,7 +32,7 @@
     "lerna": "3.4.3",
     "prettier": "1.15.2",
     "rollup": "0.67.4",
-    "typescript": "3.1.6",
+    "typescript": "3.2.2",
     "webpack": "4.27.1"
   },
   "private": true,
