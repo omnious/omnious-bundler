@@ -25,7 +25,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@svgr/webpack": "3.1.0",
+    "@svgr/webpack": "4.1.0",
     "babel-loader": "8.0.4",
     "compression-webpack-plugin": "2.0.0",
     "copy-webpack-plugin": "4.5.3",
