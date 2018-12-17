@@ -24,9 +24,8 @@ const configValue = {
   },
   test: {}
 };
-const config = {
+
+module.exports = {
   ...configValue.base,
   ...configValue[NODE_ENV]
 };
-
-module.exports = config;

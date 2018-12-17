@@ -28,7 +28,9 @@ function write(status, text, verbose) {
   // Adds optional verbose output
   if (verbose) {
     if (verbose.constructor === Object) {
-      console.dir(verbose, { depth: 15 });
+      console.dir(verbose, {
+        depth: 15
+      });
     } else if (verbose.constructor === Array) {
       verbose.forEach(msg => {
         console.log(`\n${msg}`);
@@ -39,11 +41,30 @@ function write(status, text, verbose) {
   }
 }
 
-module.exports = {
-  start: text => write('start', text),
-  task: text => write('task', text),
-  end: text => write('end', text),
-  info: (text, data) => write('info', text, data),
-  warn: (text, data) => write('warn', text, data),
-  error: (text, err) => write('error', text, err)
+const start = text => {
+  write('start', text);
+};
+const task = text => {
+  write('task', text);
+};
+const end = text => {
+  write('end', text);
+};
+const info = (text, data) => {
+  write('info', text, data);
+};
+const warn = (text, data) => {
+  write('warn', text, data);
+};
+const error = (text, err) => {
+  write('error', text, err);
+};
+
+module.exports.logger = {
+  start,
+  task,
+  end,
+  info,
+  warn,
+  error
 };
