@@ -1,8 +1,4 @@
 {
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "bootstrap": "lerna clean -y && lerna bootstrap",
     "build": "cd fixtures && node ../packages/webpack/bin/cli.js build"
@@ -12,7 +8,7 @@
     "react-dom": "16.6.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.0",
+    "@babel/core": "7.2.0",
     "@babel/plugin-transform-react-jsx": "7.1.6",
     "@babel/preset-typescript": "7.1.0",
     "@omnious/eslint-config": "0.1.1",
@@ -33,10 +29,14 @@
     "@types/webpack-env": "1.13.6",
     "@types/webpack-hot-middleware": "2.16.4",
     "eslint": "5.9.0",
-    "lerna": "^3.4.3",
+    "lerna": "3.4.3",
     "prettier": "1.15.2",
-    "rollup": "^0.67.4",
+    "rollup": "0.67.4",
     "typescript": "3.1.6",
-    "webpack": "^4.27.1"
-  }
+    "webpack": "4.27.1"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
 }
