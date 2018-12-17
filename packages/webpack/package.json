@@ -37,7 +37,7 @@
     "koa": "2.5.2",
     "mini-css-extract-plugin": "0.4.4",
     "opn": "5.4.0",
-    "optimize-css-assets-webpack-plugin": "5.0.0",
+    "optimize-css-assets-webpack-plugin": "5.0.1",
     "ora": "3.0.0",
     "postcss-loader": "3.0.0",
     "prepack": "0.2.54",
