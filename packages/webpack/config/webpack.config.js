@@ -1,7 +1,6 @@
 'use strict';
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { resolve } = require('path');
 const { HotModuleReplacementPlugin } = require('webpack');
 
 const {
@@ -13,15 +12,13 @@ const {
   HOST,
   PORT
 } = require('./env');
-const { indexHtml, publicDir } = require('./path');
-
-const srcDir = resolve(process.cwd(), 'src');
+const { indexHtml, publicDir, rootDir, srcDir } = require('./path');
 
 module.exports = {
   mode: 'development',
-  // entry: '',
+  entry: [srcDir, 'webpack-dev-server/client'],
   output: {
-    publicPath: 'http://localhost:3000/'
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -100,7 +97,7 @@ module.exports = {
   },
   // performance: {},
   devtool: 'cheap-module-source-map',
-  context: process.cwd(),
+  context: rootDir,
   target: 'web',
   // externals: [],
   // serve: {},

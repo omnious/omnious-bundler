@@ -3,17 +3,21 @@
 
 // Global import
 // const opn = require('opn');
+const logger = require('signale');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const { resolve } = require('path');
 
 // Local import
-const { logger } = require('../utils/logger');
 const webpackConfig = require('../config/webpack.config');
 const { HOST, NODE_ENV, PORT } = require('../config/env');
 // const { publicDir } = require('../utils/path');
 
 const publicDir = resolve(process.cwd(), 'public');
+
+logger.config({
+  displayTimestamp: true
+});
 
 function main() {
   // Initialize console
@@ -22,7 +26,6 @@ function main() {
 
   // Set DevServer
   // const devConfig = webpackConfig(NODE_ENV, options);
-  // const compiler = webpack(devConfig);
   let compiler;
 
   try {
@@ -54,7 +57,7 @@ function main() {
       throw new Error(err);
     }
 
-    logger.info('Compile client bundles');
+    logger.complete(`Server is running on http://${HOST}:${PORT}`);
   });
 }
 

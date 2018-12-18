@@ -16,6 +16,7 @@ module.exports.packageJson = resolve(rootDir, 'package.json');
 module.exports.polyfills = resolve(srcDir, 'polyfills');
 module.exports.publicDir = publicDir;
 module.exports.reduxDir = resolve(srcDir, 'redux');
+module.exports.rootDir = rootDir;
 module.exports.srcDir = srcDir;
 module.exports.staticDir = resolve(rootDir, 'static');
 module.exports.indexHtml = resolve(publicDir, 'index.html');
