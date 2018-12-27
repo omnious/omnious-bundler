@@ -11,16 +11,13 @@ const {
   GA_TRACKING_ID,
   NAVER_APP_ID
 } = require('../config/env');
-
-const publicDir = resolve(process.cwd(), 'public');
-const srcDir = resolve(process.cwd(), 'src');
-const indexHtml = resolve(publicDir, 'index.html');
+const { indexHtml, srcDir, publicDir } = require('../config/path');
 
 module.exports = {
   mode: 'development',
-  // entry: '',
+  entry: ['webpack-hot-middleware/client?noInfo=true', srcDir],
   output: {
-    publicPath: 'http://localhost:3000/'
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -105,17 +102,10 @@ module.exports = {
   // serve: {},
   // stats: '',
   devServer: {
-    contentBase: publicDir,
-    compress: true,
-    historyApiFallback: {
-      disableDotRule: true
-    },
-    host: 'localhost',
-    hot: true,
-    // noInfo: true,
-    port: 3000,
-    // quiet: true,
+    logLevel: 'error',
+    publicPath: '/',
     watchOptions: {
+      aggregateTimeout: 200,
       ignored: /node_modules/
     }
   },

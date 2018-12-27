@@ -3,6 +3,7 @@
 
 // Global import
 const express = require('express');
+const { resolve } = require('path');
 const logger = require('signale');
 const webpack = require('webpack');
 const devMiddleware = require('webpack-dev-middleware');
@@ -37,6 +38,18 @@ function main() {
     log: false
   }));
   devServer.use(express.static(publicDir));
+  devServer.use((req, res, next) => {
+    const filename = resolve(compiler.outputPath, 'index.html');
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.set('content-type', 'text/html');
+      res.send(result);
+      res.end();
+    });
+  });
 
   // Start server
   devServer.listen(PORT, err => {
