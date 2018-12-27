@@ -17,10 +17,6 @@ logger.config({
   displayTimestamp: true
 });
 
-logger.config({
-  displayTimestamp: true
-});
-
 function main() {
   // Initialize console
   console.clear();
