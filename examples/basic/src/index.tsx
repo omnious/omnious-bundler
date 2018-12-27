@@ -11,6 +11,7 @@ const init = RootComponent => {
 
 if (module.hot) {
   module.hot.accept('./App', () => {
+    console.log('Reloading');
     const { App } = require('./App');
 
     unmountComponentAtNode(mountNode);

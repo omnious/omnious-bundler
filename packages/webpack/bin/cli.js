@@ -1,61 +1,38 @@
 #!/usr/bin/env node
-
 'use strict';
 
-// Global import
-const commander = require('commander');
+const { spawnSync } = require('child_process');
+const program = require('commander');
 
-// Local import
 const packageJson = require('../package');
-const log = require('../scripts/log');
 
 let taskName;
-const program = new commander.Command('omnious-webpack')
+program
   .version(packageJson.version, '-v, --version')
   .arguments('<task>')
   .usage('<task> [options]')
-  .option('-m, --mode [value]', 'target UI library')
-  .option('-a, --add [value]', 'additional webpack config')
-  .action(task => {
-    taskName = task;
+  // .option('-m, --mode [value]', 'target UI library')
+  .action(name => {
+    taskName = name;
   })
   .parse(process.argv);
 
-if (!taskName) {
-  log.error(`Please specify webpack task!
-   Usage: omnious-webpack <task> [options]
-  `);
-  process.exit(1);
-}
-
-function webpackScript(task, options = {}) {
+function webpackScript(task, options) {
   switch (task) {
-    case 'build': {
-      const { build } = require('../scripts/build');
-      build(options);
+    case 'build':
+    case 'watch':
+    case 'test': {
+      const result = spawnSync('node', [require.resolve(`../scripts/${task}`)], {
+        stdio: 'inherit'
+      });
+      process.exit(result.status);
       break;
     }
-    case 'watch': {
-      const { watch } = require('../scripts/watch');
-      watch(options);
-      break;
-    }
-    case 'koa': {
-      const { useKoa } = require('../scripts/koa');
-      const mergedOptions = {
-        ...options,
-        task
-      };
-      useKoa(mergedOptions);
-      break;
-    }
-    case 'test':
     default:
-      return log.error(`Unknown task: ${task}`);
+      console.log(`Unknown task: ${task}.`);
   }
 }
 
 webpackScript(taskName, {
-  add: program.add,
   mode: program.mode || 'react'
 });

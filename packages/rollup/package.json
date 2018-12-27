@@ -21,9 +21,9 @@
   },
   "main": "./bin/cli.js",
   "scripts": {},
-  "dependencies": {
-    "commander": "^2.15.1",
-    "rollup": "^0.66.0"
+  "dependencies": {},
+  "peerDependencies": {
+    "rollup": "*"
   },
   "bin": {
     "omnious-rollup": "./bin/cli.js"
