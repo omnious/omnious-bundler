@@ -8,15 +8,16 @@ const {
   FACEBOOK_APP_ID,
   FACEBOOK_PIXEL_ID,
   GA_TRACKING_ID,
-  NAVER_APP_ID,
-  HOST,
-  PORT
-} = require('./env');
-const { indexHtml, publicDir, rootDir, srcDir } = require('./path');
+  NAVER_APP_ID
+} = require('../config/env');
+const { srcDir } = require('../config/path');
+
+const publicDir = resolve(process.cwd(), 'public');
+const indexHtml = resolve(publicDir, 'index.html');
 
 module.exports = {
   mode: 'development',
-  entry: [srcDir, 'webpack-dev-server/client'],
+  entry: ['webpack-hot-middleware/client?noInfo=true', srcDir],
   output: {
     publicPath: '/'
   },
@@ -103,19 +104,10 @@ module.exports = {
   // serve: {},
   // stats: '',
   devServer: {
-    clientLogLevel: 'none',
-    compress: true,
-    contentBase: publicDir,
-    historyApiFallback: {
-      disableDotRule: true
-    },
-    host: HOST,
-    hot: true,
-    port: PORT,
+    logLevel: 'error',
     publicPath: '/',
-    quiet: true,
-    watchContentBase: true,
     watchOptions: {
+      aggregateTimeout: 200,
       ignored: /node_modules/
     }
   },

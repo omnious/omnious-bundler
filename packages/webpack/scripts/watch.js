@@ -2,18 +2,20 @@
 'use strict';
 
 // Global import
-// const opn = require('opn');
+const express = require('express');
 const logger = require('signale');
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const { resolve } = require('path');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
 
 // Local import
-const webpackConfig = require('../config/webpack.config');
+const webpackConfig = require('./webpack.config');
 const { HOST, NODE_ENV, PORT } = require('../config/env');
-// const { publicDir } = require('../utils/path');
+const { publicDir } = require('../config/path');
 
-const publicDir = resolve(process.cwd(), 'public');
+logger.config({
+  displayTimestamp: true
+});
 
 logger.config({
   displayTimestamp: true
@@ -25,7 +27,6 @@ function main() {
   logger.start(`Starting build in ${NODE_ENV} mode`);
 
   // Set DevServer
-  // const devConfig = webpackConfig(NODE_ENV, options);
   let compiler;
 
   try {
@@ -34,22 +35,12 @@ function main() {
     throw new Error(err);
   }
 
-  const devServer = new WebpackDevServer(compiler, webpackConfig.devServer);
-  // const devServer = new WebpackDevServer(compiler, {
-  //   contentBase: publicDir,
-  //   historyApiFallback: {
-  //     disableDotRule: true
-  //   },
-  //   host: HOST,
-  //   hotOnly: true,
-  //   inline: true,
-  //   noInfo: true,
-  //   port: PORT,
-  //   publicPath: devConfig.output.publicPath,
-  //   stats: {
-  //     colors: true
-  //   }
-  // });
+  const devServer = express();
+  devServer.use(devMiddleware(compiler, webpackConfig.devServer));
+  devServer.use(hotMiddleware(compiler, {
+    log: false
+  }));
+  devServer.use(express.static(publicDir));
 
   // Start server
   devServer.listen(PORT, HOST, err => {
