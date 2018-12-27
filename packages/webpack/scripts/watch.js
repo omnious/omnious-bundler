@@ -43,7 +43,7 @@ function main() {
   devServer.use(express.static(publicDir));
 
   // Start server
-  devServer.listen(PORT, HOST, err => {
+  devServer.listen(PORT, err => {
     if (err) {
       throw new Error(err);
     }
