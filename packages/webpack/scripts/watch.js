@@ -10,9 +10,9 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 
 // Local import
-const webpackConfig = require('./webpack.config');
 const { HOST, NODE_ENV, PORT } = require('../config/env');
 const { publicDir } = require('../config/path');
+const webpackConfig = require('../config/webpack.config');
 
 logger.config({
   displayTimestamp: true

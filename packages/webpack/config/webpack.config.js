@@ -10,10 +10,7 @@ const {
   GA_TRACKING_ID,
   NAVER_APP_ID
 } = require('../config/env');
-const { srcDir } = require('../config/path');
-
-const publicDir = resolve(process.cwd(), 'public');
-const indexHtml = resolve(publicDir, 'index.html');
+const { indexHtml, rootDir, srcDir } = require('../config/path');
 
 module.exports = {
   mode: 'development',
