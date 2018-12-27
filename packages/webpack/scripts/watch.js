@@ -2,28 +2,28 @@
 'use strict';
 
 // Global import
-// const opn = require('opn');
-const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
+const express = require('express');
 const { resolve } = require('path');
+const logger = require('signale');
+const webpack = require('webpack');
+const devMiddleware = require('webpack-dev-middleware');
+const hotMiddleware = require('webpack-hot-middleware');
 
 // Local import
-const { logger } = require('../utils/logger');
-const webpackConfig = require('./webpack.config');
 const { HOST, NODE_ENV, PORT } = require('../config/env');
-// const { publicDir } = require('../utils/path');
+const { publicDir } = require('../config/path');
+const webpackConfig = require('../config/webpack.config');
 
-const publicDir = resolve(process.cwd(), 'public');
+logger.config({
+  displayTimestamp: true
+});
 
-function main(options) {
+function main() {
   // Initialize console
-  // console.clear();
+  console.clear();
   logger.start(`Starting build in ${NODE_ENV} mode`);
 
   // Set DevServer
-  // const devConfig = webpackConfig(NODE_ENV, options);
-  // const compiler = webpack(devConfig);
-  console.log(webpackConfig);
   let compiler;
 
   try {
@@ -32,40 +32,37 @@ function main(options) {
     throw new Error(err);
   }
 
-  const devServer = new WebpackDevServer(compiler, webpackConfig.devServer);
-  // const devServer = new WebpackDevServer(compiler, {
-  //   contentBase: publicDir,
-  //   historyApiFallback: {
-  //     disableDotRule: true
-  //   },
-  //   host: HOST,
-  //   hotOnly: true,
-  //   inline: true,
-  //   noInfo: true,
-  //   port: PORT,
-  //   publicPath: devConfig.output.publicPath,
-  //   stats: {
-  //     colors: true
-  //   }
-  // });
+  const devServer = express();
+  devServer.use(devMiddleware(compiler, webpackConfig.devServer));
+  devServer.use(hotMiddleware(compiler, {
+    log: false
+  }));
+  devServer.use(express.static(publicDir));
+  devServer.use((req, res, next) => {
+    const filename = resolve(compiler.outputPath, 'index.html');
+    compiler.outputFileSystem.readFile(filename, (err, result) => {
+      if (err) {
+        return next(err);
+      }
+
+      res.set('content-type', 'text/html');
+      res.send(result);
+      res.end();
+    });
+  });
 
   // Start server
   devServer.listen(PORT, err => {
     if (err) {
-      logger.error(err);
+      throw new Error(err);
     }
 
-    // const url = `http://${HOST}:${PORT}`;
-    // log.end(`Setting timer to open browser at ${url}, in ${NODE_ENV}`);
+    logger.complete(`Server is running on http://${HOST}:${PORT}`);
   });
-
-  // for (const sig of ['SIGINT', 'SIGTERM']) {
-  //   process.on(sig, code => {
-  //     log.info('Shutting down app');
-  //     devServer.close();
-  //     process.exit(code || 0);
-  //   });
-  // }
 }
 
-main();
+try {
+  main();
+} catch (err) {
+  logger.error(err);
+}
