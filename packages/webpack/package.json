@@ -2,24 +2,29 @@
   "name": "@omnious/webpack",
   "version": "0.9.5",
   "description": "Webpack scripts and configurations for omnious.",
-  "homepage": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/webpack",
-  "author": "Omnious Dev Team <dev@omnious.com> (https://www.omnious.com)",
-  "maintainers": [
-    {
-      "name": "Euihyun Yang",
-      "email": "ykd1217@gmail.com"
-    }
-  ],
-  "license": "MIT",
-  "repository": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/webpack",
   "keywords": [
     "omnious",
-    "webpack"
+    "webpack",
+    "cli"
   ],
-  "engines": {
-    "node": ">= 8.10.0"
+  "homepage": "https://github.com/omnious-dev/omnious-bundler/tree/master/packages/webpack",
+  "bugs": {
+    "email": "dev@omnious.com",
+    "url": "https://github.com/omnious-dev/omnious-bundler/issues"
   },
+  "license": "MIT",
+  "author": "Omnious Dev Team <dev@omnious.com> (https://www.omnious.com)",
+  "contributors": [
+    "Euihyun Yang <ykd1217@gmail.com>"
+  ],
   "main": "./bin/cli.js",
+  "bin": {
+    "omnious-webpack": "./bin/cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omnious-dev/omnious-bundler.git"
+  },
   "scripts": {
     "build": "echo 'There`s no @omnious/webpack build'",
     "lint": "eslint ."
@@ -44,22 +49,26 @@
     "prepack-webpack-plugin": "1.1.2",
     "raw-loader": "0.5.1",
     "react-dev-utils": "6.0.3",
+    "signale": "1.3.0",
     "style-loader": "0.23.1",
     "uglifyjs-webpack-plugin": "1.3.0",
     "url-loader": "1.1.1",
     "webpack-cli": "^3.1.2",
     "webpack-dashboard": "2.0.0",
     "webpack-dev-middleware": "3.4.0",
-    "webpack-dev-server": "3.1.9",
+    "webpack-dev-server": "3.1.14",
     "webpack-hot-middleware": "2.24.3",
     "webpack-merge": "4.1.2",
     "workbox-webpack-plugin": "3.6.2"
   },
   "peerDependencies": {
-    "@babel/core": "*",
-    "webpack": "*"
+    "@babel/core": ">= 7.0.0",
+    "webpack": ">= 4.0.0"
   },
-  "bin": {
-    "omnious-webpack": "./bin/cli.js"
+  "engines": {
+    "node": ">= 8.10.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
