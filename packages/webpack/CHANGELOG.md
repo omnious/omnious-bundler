@@ -1,5 +1,9 @@
 # Changelog for @omnious/webpack
 
+## 0.10.0 (December 27, 2018)
+
+- Use `webpack-dev-middleware` & `webpack-hot-middleware` instead of `webpack-dev-server`
+
 ## 0.6.0 (July 13, 2018)
 
 - Remove `clean-webpack-plugin` & use `rimraf` instead

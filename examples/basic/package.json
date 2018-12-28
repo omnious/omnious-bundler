@@ -6,5 +6,6 @@
   },
   "devDependencies": {
     "@omnious/webpack": "^0.9.5"
-  }
+  },
+  "private": true
 }
