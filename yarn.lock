@@ -1509,7 +1509,7 @@
     "@types/minimatch" "*"
     "@types/webpack" "*"
 
-"@types/dotenv-webpack@^1.5.0":
+"@types/dotenv-webpack@1.5.0":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/@types/dotenv-webpack/-/dotenv-webpack-1.5.0.tgz#08aca31a68484e9ba5ac80a8037f5ddcf87d0160"
   integrity sha512-lGEUtWA5lccJNc50wLqXkYpUgLCBi4XNUrUURyyRd9tBPxRHbLSCYrm3Ry+EGzKeoUj/9jfPT2Te8PMLmeD7JQ==
