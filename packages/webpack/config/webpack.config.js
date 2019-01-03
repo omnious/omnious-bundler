@@ -1,5 +1,6 @@
 'use strict';
 
+const DotenvPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 
@@ -109,6 +110,7 @@ module.exports = {
     }
   },
   plugins: [
+    new DotenvPlugin(),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       template: indexHtml,

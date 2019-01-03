@@ -11,6 +11,7 @@ module.exports.componentsDir = resolve(srcDir, 'components');
 module.exports.containersDir = resolve(srcDir, 'containers');
 module.exports.contextsDir = resolve(srcDir, 'contexts');
 module.exports.distDir = resolve(rootDir, 'dist');
+module.exports.dotenv = resolve(rootDir, '.env');
 module.exports.hocDir = resolve(srcDir, 'hoc');
 module.exports.packageJson = resolve(rootDir, 'package.json');
 module.exports.polyfills = resolve(srcDir, 'polyfills');

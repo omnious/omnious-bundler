@@ -5,6 +5,7 @@
  */
 
 // Global import
+const DotenvPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
 
@@ -18,7 +19,7 @@ const {
   NAVER_APP_ID,
   PORT
 } = require('../utils/env');
-const { indexHtml, srcDir } = require('../utils/path');
+const { dotenv, indexHtml, srcDir } = require('../utils/path');
 
 module.exports = {
   mode: 'development',
@@ -48,6 +49,9 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   plugins: [
+    new DotenvPlugin({
+      path: dotenv
+    }),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
