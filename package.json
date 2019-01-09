@@ -29,7 +29,7 @@
     "eslint": "5.11.1",
     "lerna": "3.8.0",
     "prettier": "1.15.3",
-    "rollup": "0.68.2",
+    "rollup": "1.1.0",
     "typescript": "3.2.2",
     "webpack": "4.28.2"
   },
