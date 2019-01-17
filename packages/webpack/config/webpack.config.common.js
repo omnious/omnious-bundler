@@ -6,7 +6,7 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const { IgnorePlugin } = require('webpack');
 
 // Local import
-const { distDir, packageJson, rootDir, srcDir } = require('../utils/path');
+const { distDir, packageJson, rootDir, srcDir } = require('./path');
 
 module.exports = {
   output: {

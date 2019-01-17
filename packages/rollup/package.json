@@ -1,6 +1,6 @@
 {
   "name": "@omnious/rollup",
-  "version": "0.1.1",
+  "version": "0.1.2-alpha.0",
   "description": "Rollup scripts and configurations for omnious.",
   "keywords": [
     "omnious",
