@@ -1,26 +1,12 @@
 'use strict';
 
-/**
- * COMMON WEBPACK CONFIG
- */
-
 // Global import
 const DotenvPlugin = require('dotenv-webpack');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const { IgnorePlugin } = require('webpack');
 
 // Local import
-const {
-  componentsDir,
-  containersDir,
-  contextsDir,
-  distDir,
-  hocDir,
-  packageJson,
-  reduxDir,
-  srcDir,
-  utilsDir
-} = require('../utils/path');
+const { distDir, packageJson, rootDir, srcDir } = require('../utils/path');
 
 module.exports = {
   output: {
@@ -30,10 +16,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)$/,
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
         include: srcDir,
-        exclude: /node_modules/,
-        use: 'babel-loader'
+        exclude: /node_modules/
+      },
+      {
+        test: /\.(ts|tsx)$/,
+        use: 'babel-loader',
+        include: srcDir,
+        exclude: /node_modules/
       },
       {
         test: /\.svg$/,
@@ -59,12 +51,20 @@ module.exports = {
         }
       },
       {
-        test: /\.(gif|otf|ttf)$/,
-        use: 'file-loader'
-      },
-      {
         test: /\.md$/,
         use: 'raw-loader'
+      },
+      {
+        exclude: [
+          /\.html$/,
+          /\.(js|jsx)$/,
+          /\.(ts|tsx)$/,
+          /\.(css|scss)$/,
+          /\.svg$/,
+          /\.(jpg|png)$/,
+          /\.md$/
+        ],
+        use: 'file-loader'
       }
     ]
   },
@@ -72,19 +72,13 @@ module.exports = {
     modules: ['node_modules'],
     extensions: ['.css', '.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      '@components': componentsDir,
-      '@containers': containersDir,
-      '@contexts': contextsDir,
-      '@hoc': hocDir,
-      '@redux': reduxDir,
-      '@utils': utilsDir
+      '@src': srcDir
     },
     plugins: [new ModuleScopePlugin(srcDir, [packageJson])]
   },
-  plugins: [
-    new DotenvPlugin({
-      systemvars: true
-    }),
-    new IgnorePlugin(/^\.\/locale$/, /moment$/)
-  ]
+  context: rootDir,
+  target: 'web',
+  // externals: [],
+  // stats: '',
+  plugins: [new DotenvPlugin(), new IgnorePlugin(/^\.\/locale$/, /moment$/)]
 };

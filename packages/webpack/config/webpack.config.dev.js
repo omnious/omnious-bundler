@@ -1,13 +1,9 @@
 'use strict';
 
-/**
- * DEV WEBPACK CONFIG
- */
-
 // Global import
-const DotenvPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
+const { smart } = require('webpack-merge');
 
 // Local import
 const {
@@ -15,22 +11,18 @@ const {
   FACEBOOK_APP_ID,
   FACEBOOK_PIXEL_ID,
   GA_TRACKING_ID,
-  HOST,
-  NAVER_APP_ID,
-  PORT
-} = require('../utils/env');
-const { dotenv, indexHtml, srcDir } = require('../utils/path');
+  NAVER_APP_ID
+} = require('./env');
+const { indexHtml, srcDir } = require('./path');
+const commonConfig = require('./webpack.config.common');
 
-module.exports = {
+module.exports = smart(commonConfig, {
   mode: 'development',
-  entry: [`webpack-dev-server/client?http://${HOST}:${PORT}`, srcDir],
-  output: {
-    filename: '[name].js'
-  },
+  entry: ['webpack-hot-middleware/client?noInfo=true', srcDir],
   module: {
     rules: [
       {
-        test: /\.s?css$/,
+        test: /\.(css|scss)$/,
         use: [
           'style-loader',
           {
@@ -47,14 +39,18 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
+  devServer: {
+    logLevel: 'error',
+    publicPath: '/',
+    watchOptions: {
+      aggregateTimeout: 200,
+      ignored: /node_modules/
+    }
+  },
   plugins: [
-    new DotenvPlugin({
-      path: dotenv
-    }),
     new HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
       template: indexHtml,
       templateParameters: {
         CDN_URL,
@@ -63,8 +59,7 @@ module.exports = {
         GA_TRACKING_ID,
         NAVER_APP_ID
       },
-      inject: true,
-      chunksSortMode: 'none'
+      inject: true
     })
   ]
-};
+});
