@@ -1,63 +1,76 @@
+#! /usr/bin/env node
 'use strict';
-
-process.on('unhandledRejection', err => {
-  throw err;
-});
 
 // Global import
 const ora = require('ora');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
+const logger = require('signale');
 const webpack = require('webpack');
 
 // Local import
-const log = require('./log');
-const remove = require('./remove');
-const webpackConfig = require('../src/Bundler');
-const { NODE_ENV } = require('../utils/env');
-const { distDir } = require('../utils/path');
+const { NODE_ENV } = require('../config/env');
+const { distDir } = require('../config/path');
+const webpackConfig = require('../config/webpack.config.prod');
+const { remove } = require('../utils');
 
-module.exports.build = async options => {
+logger.config({
+  displayTimestamp: true
+});
+
+async function main() {
+  // Initialize console
+  console.clear();
+  logger.start(`Starting build in ${NODE_ENV} mode`);
+
+  // Remove previous bundles
   try {
     await remove(distDir);
   } catch (err) {
-    log.error('Failed to compile', err.messages);
+    throw new Error(err);
   }
 
-  // Initialize console
-  console.clear();
-  log.start(`Starting build in ${NODE_ENV} mode`);
+  // Set Compiler
+  let compiler;
 
-  // Create spinner
+  try {
+    compiler = webpack(webpackConfig);
+  } catch (err) {
+    throw new Error(err);
+  }
+
   const spinner = ora('Building client');
-  const buildConfig = webpackConfig(NODE_ENV, options);
-  const compiler = webpack(buildConfig);
   spinner.start();
 
-  // Generate bundle files
   compiler.run((err, stats) => {
     if (err) {
-      log.error(err);
-    } else {
-      const rawMessages = stats.toJson({}, true);
-      const messages = formatWebpackMessages(rawMessages);
-      spinner.stop();
+      throw new Error(err);
+    }
 
-      if (!messages.errors.length && !messages.warnings.length) {
-        // Webpack build success
-        log.end('Client compiled successfully');
-        log.info('Build outputs', stats.toString({ colors: true }));
-      }
+    spinner.stop();
+    const rawMessages = stats.toJson({}, true);
+    const messages = formatWebpackMessages(rawMessages);
 
-      if (messages.warnings.length) {
-        // Warning occurs
-        log.warn('Compiled with warnings', messages.warnings);
-        log.info('Build outputs', stats.toString({ colors: true, warnings: false }));
-      }
+    if (!messages.errors.length && !messages.warnings.length) {
+      // Webpack build success
+      logger.complete('Client compiled successfully');
+      logger.info('Build outputs', stats.toString({ colors: true }));
+    }
 
-      if (messages.errors.length) {
-        // Build fail
-        log.error('Failed to compile', messages.errors);
-      }
+    if (messages.warnings.length) {
+      // Warning occurs
+      logger.warn('Compiled with warnings', messages.warnings);
+      logger.info('Build outputs', stats.toString({ colors: true, warnings: false }));
+    }
+
+    if (messages.errors.length) {
+      // Build fail
+      throw new Error(messages.errors);
     }
   });
-};
+}
+
+try {
+  main();
+} catch (err) {
+  logger.error(err);
+}

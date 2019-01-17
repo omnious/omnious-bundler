@@ -1,18 +1,13 @@
 'use strict';
 
-/**
- * PROD WEBPACK CONFIG
- */
-
 // Global import
 const CompressionPlugin = require('compression-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-// const PrepackWebpackPlugin = require('prepack-webpack-plugin').default;
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const { LoaderOptionsPlugin } = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
+const { smart } = require('webpack-merge');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // Local import
@@ -22,10 +17,11 @@ const {
   FACEBOOK_PIXEL_ID,
   GA_TRACKING_ID,
   NAVER_APP_ID
-} = require('../utils/env');
-const { indexHtml, polyfills, publicDir, srcDir } = require('../utils/path');
+} = require('./env');
+const { indexHtml, polyfills, publicDir, srcDir } = require('./path');
+const commonConfig = require('./webpack.config.common');
 
-module.exports = {
+module.exports = smart(commonConfig, {
   mode: 'production',
   entry: {
     bundle: srcDir,
@@ -37,7 +33,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s?css$/,
+        test: /\.(css|scss)$/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -59,20 +55,7 @@ module.exports = {
     minimize: true,
     minimizer: [
       new OptimizeCSSAssetsPlugin(),
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          compress: {
-            comparisons: false,
-            drop_console: true,
-            drop_debugger: true,
-            unused: true,
-            warnings: false
-          },
-          mangle: true,
-          output: {
-            comments: false
-          }
-        },
+      new TerserPlugin({
         cache: true,
         parallel: true,
         sourceMap: true
@@ -100,7 +83,6 @@ module.exports = {
     }),
     new CopyWebpackPlugin([{ from: publicDir, to: '.' }]),
     new HtmlWebpackPlugin({
-      filename: 'index.html',
       template: indexHtml,
       templateParameters: {
         CDN_URL,
@@ -124,10 +106,6 @@ module.exports = {
       },
       chunksSortMode: 'none'
     }),
-    new LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css'
     }),
@@ -138,4 +116,4 @@ module.exports = {
       skipWaiting: true
     })
   ]
-};
+});
