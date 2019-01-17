@@ -1,6 +1,6 @@
 {
   "name": "@omnious/webpack",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Webpack scripts and configurations for omnious.",
   "keywords": [
     "omnious",
