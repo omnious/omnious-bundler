@@ -28,7 +28,7 @@
   "scripts": {},
   "dependencies": {
     "@svgr/rollup": "4.1.0",
-    "rollup-plugin-babel": "4.3.0",
+    "rollup-plugin-babel": "4.3.2",
     "rollup-plugin-node-resolve": "4.0.0"
   },
   "peerDependencies": {
