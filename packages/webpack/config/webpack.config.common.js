@@ -80,5 +80,10 @@ module.exports = {
   target: 'web',
   // externals: [],
   // stats: '',
-  plugins: [new DotenvPlugin(), new IgnorePlugin(/^\.\/locale$/, /moment$/)]
+  plugins: [
+    new DotenvPlugin({
+      systemvars: true
+    }),
+    new IgnorePlugin(/^\.\/locale$/, /moment$/)
+  ]
 };
