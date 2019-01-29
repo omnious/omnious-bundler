@@ -5276,15 +5276,16 @@ inquirer@^6.1.0, inquirer@^6.2.0:
     strip-ansi "^5.0.0"
     through "^2.3.6"
 
-inspectpack@^3.0.1:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/inspectpack/-/inspectpack-3.0.2.tgz#a2b17a1c09c236cc8d453388b814972d2ae8e349"
-  integrity sha512-DvS+X+zpHJAuU2+FoLm2xNpRSu8lRl+sXZZGPnvQt1mBlMtmvWYKOkUIDbThIlZLG7QQ90J0hnQt4ZUNiR/vBg==
+inspectpack@^4.0.0:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/inspectpack/-/inspectpack-4.1.2.tgz#b07dd10f1131c290d2076270470787d61b47097e"
+  integrity sha512-bd0iIr5P2xRMtjQQkPnUYJSNa3mUFYER/2eQOPAoXrWBnZXMeFVAgRt/Dny8XVdSkkFoNKhumPjjV9QgTDcVxQ==
   dependencies:
     chalk "^2.4.0"
     io-ts "^1.0.5"
     io-ts-reporters "^0.0.20"
     pify "^3.0.0"
+    semver-compare "^1.0.0"
     yargs "^11.0.0"
 
 invariant@^2.2.2:
@@ -8683,6 +8684,11 @@ seedrandom@^2.4.2:
   resolved "https://registry.yarnpkg.com/seedrandom/-/seedrandom-2.4.4.tgz#b25ea98632c73e45f58b77cfaa931678df01f9ba"
   integrity sha512-9A+PDmgm+2du77B5i0Ip2cxOqqHjgNxnBgglxLcX78A2D6c2rTo61z4jnVABpF4cKeDMDG+cmXXvdnqse2VqMA==
 
+semver-compare@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/semver-compare/-/semver-compare-1.0.0.tgz#0dee216a1c941ab37e9efb1788f6afc5ff5537fc"
+  integrity sha1-De4hahyUGrN+nvsXiPavxf9VN/w=
+
 "semver@2 || 3 || 4 || 5", "semver@2.x || 3.x || 4 || 5", semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
@@ -9902,17 +9908,17 @@ webidl-conversions@^4.0.2:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
   integrity sha512-YQ+BmxuTgd6UXZW3+ICGfyqRyHXVlD5GtQr5+qjiNW7bF0cqrzX500HVXPBOvgXb5YnzDd+h0zqyv61KUD7+Sg==
 
-webpack-dashboard@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/webpack-dashboard/-/webpack-dashboard-2.0.0.tgz#70db22e7bb5b12b4a7fde82de87ce01eed8d921c"
-  integrity sha512-JxbGYU13+Np6NUT6nXIc3x1fMWAQIwT0evjV6MatXdol8TEsrNIFiSLmT1D0ofoObZssglqq5OGQ8yxQ6LAdgw==
+webpack-dashboard@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/webpack-dashboard/-/webpack-dashboard-2.1.0.tgz#b5f0ffec686a5a7efa36f4757eee79acb273fd9f"
+  integrity sha512-psG8JInvWSGEreLX9wbaWZq2hsf2cxUYYwUyOTtzcommLOqJ/z0B9JD/cJNN/bNZNbS3XidgEqwKsqFd3BQpnQ==
   dependencies:
     blessed "^0.1.81"
     commander "^2.15.1"
     cross-spawn "^6.0.5"
     filesize "^3.6.1"
     handlebars "^4.0.11"
-    inspectpack "^3.0.1"
+    inspectpack "^4.0.0"
     most "^1.7.3"
     socket.io "^2.1.1"
     socket.io-client "^2.1.1"
