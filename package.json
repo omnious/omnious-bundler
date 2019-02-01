@@ -26,7 +26,7 @@
     "@types/webpack-dev-middleware": "2.0.2",
     "@types/webpack-env": "1.13.6",
     "@types/webpack-hot-middleware": "2.16.4",
-    "eslint": "5.12.0",
+    "eslint": "5.13.0",
     "lerna": "3.10.5",
     "prettier": "1.15.3",
     "rollup": "1.1.0",
