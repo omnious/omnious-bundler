@@ -10,8 +10,7 @@ let taskName;
 program
   .version(packageJson.version, '-v, --version')
   .arguments('<task>')
-  .usage('<task> [options]')
-  // .option('-m, --mode [value]', 'target UI library')
+  .usage('<task>')
   .action(name => {
     taskName = name;
   })
