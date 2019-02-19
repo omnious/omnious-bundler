@@ -24,6 +24,8 @@ function main() {
   // Initialize console
   console.clear();
   logger.start(`Starting build in ${NODE_ENV} mode`);
+
+  // Import custom config
   let customConfig = {};
 
   if (existsSync(customConfigJs)) {
