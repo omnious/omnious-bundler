@@ -106,12 +106,12 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css'
-    }),
-    // new PrepackWebpackPlugin(),
-    new WorkboxPlugin.GenerateSW({
-      swDest: 'sw.js',
-      clientsClaim: true,
-      skipWaiting: true
     })
+    // new PrepackWebpackPlugin(),
+    // new WorkboxPlugin.GenerateSW({
+    //   swDest: 'sw.js',
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // })
   ]
 };
