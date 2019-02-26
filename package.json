@@ -23,7 +23,7 @@
     "@types/signale": "1.2.0",
     "@types/webpack": "4.4.23",
     "@types/webpack-dev-middleware": "2.0.2",
-    "@types/webpack-env": "1.13.6",
+    "@types/webpack-env": "1.13.7",
     "@types/webpack-hot-middleware": "2.16.4",
     "eslint": "5.12.0",
     "lerna": "3.10.5",
