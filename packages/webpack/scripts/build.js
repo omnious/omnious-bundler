@@ -2,40 +2,46 @@
 'use strict';
 
 // Global import
+const { existsSync } = require('fs');
 const ora = require('ora');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const logger = require('signale');
 const webpack = require('webpack');
 
 // Local import
+const { createConfig } = require('../config/create-config');
 const { NODE_ENV } = require('../config/env');
-const { distDir } = require('../config/path');
-const webpackConfig = require('../config/webpack.config.prod');
-const { remove } = require('../utils');
+const { customConfigJs, distDir } = require('../config/path');
+const prodConfig = require('../config/webpack.config.prod');
 
 logger.config({
   displayTimestamp: true
 });
 
-async function main() {
+function main() {
   // Initialize console
   console.clear();
   logger.start(`Starting build in ${NODE_ENV} mode`);
 
-  // Remove previous bundles
-  try {
-    await remove(distDir);
-  } catch (err) {
-    throw new Error(err);
+  // Import custom config
+  let customConfig = {};
+
+  if (existsSync(customConfigJs)) {
+    try {
+      customConfig = require(customConfigJs);
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   // Set Compiler
+  const webpackConfig = createConfig(prodConfig, customConfig);
   let compiler;
 
   try {
     compiler = webpack(webpackConfig);
-  } catch (err) {
-    throw new Error(err);
+  } catch (error) {
+    throw new Error(error);
   }
 
   const spinner = ora('Building client');
@@ -71,6 +77,6 @@ async function main() {
 
 try {
   main();
-} catch (err) {
-  logger.error(err);
+} catch (error) {
+  logger.error(error);
 }

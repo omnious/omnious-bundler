@@ -7,7 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const { smart } = require('webpack-merge');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // Local import
@@ -19,9 +18,8 @@ const {
   NAVER_APP_ID
 } = require('./env');
 const { indexHtml, polyfills, publicDir, srcDir } = require('./path');
-const commonConfig = require('./webpack.config.common');
 
-module.exports = smart(commonConfig, {
+module.exports = {
   mode: 'production',
   entry: {
     bundle: srcDir,
@@ -108,12 +106,12 @@ module.exports = smart(commonConfig, {
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].css'
-    }),
-    // new PrepackWebpackPlugin(),
-    new WorkboxPlugin.GenerateSW({
-      swDest: 'sw.js',
-      clientsClaim: true,
-      skipWaiting: true
     })
+    // new PrepackWebpackPlugin(),
+    // new WorkboxPlugin.GenerateSW({
+    //   swDest: 'sw.js',
+    //   clientsClaim: true,
+    //   skipWaiting: true
+    // })
   ]
-});
+};

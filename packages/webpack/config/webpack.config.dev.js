@@ -3,7 +3,6 @@
 // Global import
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { HotModuleReplacementPlugin } = require('webpack');
-const { smart } = require('webpack-merge');
 
 // Local import
 const {
@@ -14,9 +13,8 @@ const {
   NAVER_APP_ID
 } = require('./env');
 const { indexHtml, srcDir } = require('./path');
-const commonConfig = require('./webpack.config.common');
 
-module.exports = smart(commonConfig, {
+module.exports = {
   mode: 'development',
   entry: ['webpack-hot-middleware/client?noInfo=true', srcDir],
   module: {
@@ -62,4 +60,4 @@ module.exports = smart(commonConfig, {
       inject: true
     })
   ]
-});
+};
