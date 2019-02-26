@@ -13,23 +13,15 @@ const { createConfig } = require('../config/create-config');
 const { NODE_ENV } = require('../config/env');
 const { customConfigJs, distDir } = require('../config/path');
 const prodConfig = require('../config/webpack.config.prod');
-const { remove } = require('../utils');
 
 logger.config({
   displayTimestamp: true
 });
 
-async function main() {
+function main() {
   // Initialize console
   console.clear();
   logger.start(`Starting build in ${NODE_ENV} mode`);
-
-  // Remove previous bundles
-  try {
-    await remove(distDir);
-  } catch (err) {
-    throw new Error(err);
-  }
 
   // Import custom config
   let customConfig = {};
@@ -48,8 +40,8 @@ async function main() {
 
   try {
     compiler = webpack(webpackConfig);
-  } catch (err) {
-    throw new Error(err);
+  } catch (error) {
+    throw new Error(error);
   }
 
   const spinner = ora('Building client');
@@ -85,6 +77,6 @@ async function main() {
 
 try {
   main();
-} catch (err) {
-  logger.error(err);
+} catch (error) {
+  logger.error(error);
 }

@@ -36,7 +36,7 @@ function main() {
     }
   }
 
-  // Set DevServer
+  // Set Compiler
   const webpackConfig = createConfig(devConfig, customConfig);
   let compiler;
 
@@ -46,6 +46,7 @@ function main() {
     throw new Error(error);
   }
 
+  // Start DevServer
   const devServer = express();
   devServer.use(devMiddleware(compiler, webpackConfig.devServer));
   devServer.use(

@@ -63,7 +63,7 @@
     "webpack": ">= 4.0.0"
   },
   "engines": {
-    "node": ">= 8.10.0"
+    "node": ">= 8.15.0"
   },
   "publishConfig": {
     "access": "public"
