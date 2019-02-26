@@ -19,7 +19,7 @@ const configValue = {
   },
   production: {},
   development: {
-    HOST: 'localhost',
+    HOST: process.env.HOST || 'localhost',
     PORT: process.env.PORT || 3000
   },
   test: {}
