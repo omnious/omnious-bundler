@@ -28,7 +28,8 @@
     "react-dom": "16.8.6",
     "rollup": "1.17.0",
     "typescript": "3.5.3",
-    "webpack": "4.37.0"
+    "webpack": "4.37.0",
+    "serialize-javascript": "2.1.2"
   },
   "private": true,
   "workspaces": [
